@@ -21,4 +21,5 @@ window.FECHAS = [
   { fecha: "2026-11-27", hora: "", sala: "MotoGP Cheste", ciudad: "Cheste, Valencia", tipo: "", entradas: "", privado: false },
   { fecha: "2026-11-28", hora: "", sala: "MotoGP Cheste", ciudad: "Cheste, Valencia", tipo: "", entradas: "", privado: false },
   { fecha: "2026-12-26", hora: "", sala: "Monreal del Campo", ciudad: "Teruel", tipo: "", entradas: "", privado: false },
+  { fecha: "2026-12-31", hora: "", sala: "Nochevieja en Albarracín", ciudad: "Albarracín, Teruel", tipo: "", entradas: "", privado: false, mapa: "Albarracín, Teruel" },
 ];
