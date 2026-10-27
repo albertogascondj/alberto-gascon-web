@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Alberto Gascón, DJ para bodas, fiestas patronales y eventos en Teruel, Valencia y Aragón.">
+<title>Alberto Gascón DJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: club-at-night single column, logo hero, then a "booth" of panels; red only where the logo's red would glow */
+:root {
+  --bg: #0b0a0b;
+  --panel: #151214;
+  --line: #2a2326;
+  --fg: #f1ecec;
+  --muted: #a69b9e;
+  --red: #e3071a;
+  --red-deep: #8f0612;
+  --chrome: #d9d4d6;
+  --f-display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box }
+body { margin: 0 }
+img { max-width: 100% }
+[hidden] { display: none !important }
+html { scroll-behavior: smooth }
+body { background: var(--bg); color: var(--fg); font: 400 17px/1.6 var(--f-body) }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg) }
+a { color: inherit }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+
+.proto { background: var(--red-deep); color: #fff; font: 500 12px/1.4 var(--f-mono); text-align: center; padding-block: 6px; letter-spacing: .04em }
+
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line) }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px }
+nav img { height: 30px; width: auto }
+nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font: 600 13px/1 var(--f-display); text-transform: uppercase; letter-spacing: .12em }
+nav ul a { text-decoration: none; color: var(--muted) }
+nav ul a:hover { color: var(--fg) }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 13px/1 var(--f-display); text-transform: uppercase; letter-spacing: .14em; text-decoration: none; padding: 13px 20px; border: 1px solid var(--red); background: var(--red); color: #fff; cursor: pointer; clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%) }
+.btn.ghost { background: transparent; border-color: var(--chrome); color: var(--fg) }
+.btn:hover { filter: brightness(1.15) }
+@media (max-width: 760px) { nav ul { display: none } }
+
+header.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line) }
+#eq { position: absolute; inset: auto 0 0 0; width: 100%; height: 45%; opacity: .5; pointer-events: none }
+.hero .wrap { position: relative; padding-block: clamp(48px, 9vw, 110px) clamp(40px, 7vw, 80px); display: grid; gap: 28px; justify-items: start }
+.hero img.logo { width: min(760px, 100%); height: auto; filter: drop-shadow(0 0 40px rgba(227, 7, 26, .35)) }
+.tagline { font: 500 clamp(15px, 2vw, 19px)/1.5 var(--f-display); letter-spacing: .2em; text-transform: uppercase; color: var(--chrome); margin: 0 }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px }
+.readout { display: flex; flex-wrap: wrap; gap: 10px 28px; font: 400 13px/1 var(--f-mono); color: var(--muted) }
+.readout b { color: var(--fg); font-weight: 500 }
+
+section { padding-block: clamp(56px, 8vw, 96px); border-bottom: 1px solid var(--line) }
+.eyebrow { font: 500 12px/1 var(--f-mono); color: var(--red); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px }
+h2 { font: 700 clamp(30px, 5vw, 52px)/1.05 var(--f-display); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 28px; text-wrap: balance }
+h3 { font: 600 20px/1.2 var(--f-display); margin: 0; text-transform: uppercase; letter-spacing: .04em }
+p { margin: 0 }
+.ph { color: var(--muted); font-style: italic }
+
+.bio { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 5vw, 64px); align-items: start }
+.photo { aspect-ratio: 4/5; max-width: 100%; background:
+  repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.025) 14px 15px),
+  radial-gradient(120% 80% at 30% 20%, #3a0c12, var(--panel) 70%);
+  border: 1px solid var(--line); display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); font: 400 13px/1.5 var(--f-mono) }
+.bio-text { display: grid; gap: 18px; max-width: 62ch; min-width: 0 }
+.bio-text .lead { font-size: 21px; line-height: 1.5; color: var(--fg) }
+.bio-text p { color: var(--muted) }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 8px }
+.facts div { background: var(--bg); padding: 14px 16px }
+.facts dt { font: 400 11px/1 var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px }
+.facts dd { margin: 0; font: 600 17px/1.2 var(--f-display) }
+@media (max-width: 760px) { .bio { grid-template-columns: 1fr } .photo { aspect-ratio: 16/10 } .facts { grid-template-columns: 1fr 1fr } }
+
+.mixes { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line) }
+.mix { background: var(--panel); display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 16px 18px }
+.play { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--red); background: transparent; color: var(--fg); display: grid; place-items: center; cursor: pointer }
+.play:hover, .mix.on .play { background: var(--red) }
+.play svg { width: 18px; height: 18px; fill: currentColor }
+.mix-main { min-width: 0; display: grid; gap: 8px }
+.mix-main .meta { font: 400 12px/1.3 var(--f-mono); color: var(--muted) }
+.mix canvas { width: 100%; height: 34px; display: block }
+.mix .tech { text-align: right; font: 400 12px/1.6 var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap }
+.mix .tech b { color: var(--fg); font-weight: 500; font-size: 15px }
+@media (max-width: 600px) { .mix { grid-template-columns: 48px minmax(0, 1fr) } .play { width: 48px; height: 48px } .mix .tech { grid-column: 2; text-align: left } }
+.platforms { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px }
+
+.dates { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums }
+.dates td { padding: 18px 12px; border-top: 1px solid var(--line); vertical-align: middle }
+.dates tr:last-child td { border-bottom: 1px solid var(--line) }
+.d-date { font: 700 15px/1.1 var(--f-display); white-space: nowrap; width: 1%; text-transform: uppercase }
+.d-date span { display: block; font: 400 12px/1.4 var(--f-mono); color: var(--muted); text-transform: none }
+.d-venue { font: 600 18px/1.2 var(--f-display); text-transform: uppercase }
+.d-venue span { display: block; font: 400 14px/1.4 var(--f-body); color: var(--muted); text-transform: none; margin-top: 2px }
+.d-slot { font: 400 13px/1.3 var(--f-mono); color: var(--muted); white-space: nowrap }
+.tag { display: inline-block; font: 500 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; padding: 6px 8px; border: 1px solid var(--line); color: var(--muted) }
+.tag.hot { border-color: var(--red); color: var(--fg) }
+.tbl { overflow-x: auto }
+@media (max-width: 600px) { .d-slot { display: none } }
+
+.kit { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line) }
+.kit div { background: var(--bg); padding: 22px 20px; display: grid; gap: 10px; align-content: start }
+.kit .num { font: 400 12px/1 var(--f-mono); color: var(--red) }
+.kit p { color: var(--muted); font-size: 15px }
+@media (max-width: 860px) { .kit { grid-template-columns: 1fr 1fr } }
+@media (max-width: 480px) { .kit { grid-template-columns: 1fr } }
+.kit-cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center }
+.kit-cta small { color: var(--muted); font: 400 12px/1.4 var(--f-mono) }
+
+.contact { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 5vw, 64px) }
+.contact-info { display: grid; gap: 18px; align-content: start; min-width: 0 }
+.contact-info p { color: var(--muted) }
+.mail { font: 500 16px/1.4 var(--f-mono); color: var(--fg); word-break: break-all }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; min-width: 0 }
+label { display: grid; gap: 6px; font: 500 11px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); min-width: 0 }
+label.full { grid-column: 1 / -1 }
+input, select, textarea { font: 400 16px/1.4 var(--f-body); color: var(--fg); background: var(--panel); border: 1px solid var(--line); padding: 12px 12px; width: 100%; border-radius: 0 }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--red) }
+textarea { min-height: 110px; resize: vertical }
+.sent { grid-column: 1 / -1; font: 400 13px/1.5 var(--f-mono); color: var(--chrome); border-left: 2px solid var(--red); padding-left: 12px }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr } form { grid-template-columns: 1fr } }
+
+footer .wrap { padding-block: 36px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: var(--muted); font: 400 13px/1.4 var(--f-mono) }
+footer img { height: 24px; width: auto; opacity: .7 }
+footer .soc { display: flex; gap: 18px }
+footer .soc a { text-decoration: none }
+footer .soc a:hover { color: var(--red) }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+
+.svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line) }
+.svc div { background: var(--panel); padding: 26px 22px; display: grid; gap: 12px; align-content: start }
+.svc .k { font: 500 11px/1 var(--f-mono); color: var(--red); text-transform: uppercase; letter-spacing: .14em }
+.svc p { color: var(--muted); font-size: 16px }
+@media (max-width: 860px) { .svc { grid-template-columns: 1fr 1fr } }
+@media (max-width: 520px) { .svc { grid-template-columns: 1fr } }
+.venues { display: flex; flex-wrap: wrap; gap: 10px 12px; list-style: none; margin: 0; padding: 0 }
+.venues li { font: 600 clamp(17px, 2.4vw, 24px)/1.2 var(--f-display); text-transform: uppercase; letter-spacing: .02em; padding: 12px 16px; border: 1px solid var(--line); background: var(--panel) }
+.venues li span { display: block; font: 400 12px/1.4 var(--f-mono); color: var(--muted); text-transform: none; margin-top: 4px }
+.rider { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px) }
+.rider .opt { border-top: 2px solid var(--red); padding-top: 18px; display: grid; gap: 10px; align-content: start; min-width: 0 }
+.rider .opt.b { border-top-color: var(--chrome) }
+.rider ul { margin: 0; padding-left: 18px; color: var(--muted) }
+.rider li b { color: var(--fg); font-weight: 600 }
+@media (max-width: 700px) { .rider { grid-template-columns: 1fr } }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; list-style: none; margin: 0; padding: 0; counter-reset: s }
+.steps li { counter-increment: s; display: grid; gap: 8px; align-content: start; color: var(--muted); font-size: 16px; min-width: 0 }
+.steps li::before { content: "0" counter(s); font: 700 34px/1 var(--f-display); color: var(--red) }
+.steps li b { color: var(--fg); font: 600 18px/1.2 var(--f-display); text-transform: uppercase }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr } }
+@media (max-width: 480px) { .steps { grid-template-columns: 1fr } }
+.split { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(24px, 5vw, 64px); align-items: center }
+.split p { color: var(--muted); max-width: 60ch }
+@media (max-width: 760px) { .split { grid-template-columns: 1fr } }
+</style>
+</head>
+<body>
+
+<div class="proto">PROTOTIPO · lo que va en cursiva falta por confirmar (WhatsApp, email, fotos)</div>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" aria-label="Inicio"><img src="assets/img/logo-blanco.png" alt="Alberto Gascón"></a>
+    <ul>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#rider">Rider</a></li>
+      <li><a href="#booking-djs">Booking de DJs</a></li>
+    </ul>
+    <a class="btn" href="#presupuesto">Pide presupuesto</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="eq" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <img class="logo" src="assets/img/logo-rojo.png" alt="Alberto Gascón">
+    <p class="tagline">DJ para bodas, fiestas y eventos · Teruel · Valencia · Aragón</p>
+    <div class="readout">
+      <span>Pinchando desde hace <b>8 años</b></span>
+      <span>Más de <b>200 bolos</b></span>
+      <span>Equipo propio <b>Denon Prime 4</b></span>
+    </div>
+    <div class="ctas">
+      <a class="btn" href="#presupuesto">Pide presupuesto</a>
+      <a class="btn ghost" href="#servicios">Qué hago</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="servicios">
+  <div class="wrap">
+    <p class="eyebrow">Servicios</p>
+    <h2>Música para que nadie se siente</h2>
+    <div class="svc">
+      <div><span class="k">Bodas</span><h3>Tu boda</h3><p>Desde el cóctel hasta el último tema de la barra libre. Preparamos juntos la música de los momentos clave y yo leo la pista el resto de la noche.</p></div>
+      <div><span class="k">Fiestas patronales</span><h3>Fiestas de pueblo</h3><p>Verbenas, peñas y noches grandes de fiestas. Llevo años en las de la provincia de Teruel y sé lo que pide la plaza a cada hora.</p></div>
+      <div><span class="k">Eventos privados</span><h3>Cumpleaños y empresas</h3><p>Cenas de empresa, aniversarios, inauguraciones y fiestas privadas, con música adaptada a tu gente.</p></div>
+      <div><span class="k">Discotecas</span><h3>Sesiones comerciales</h3><p>Sesiones para salas y discotecas comerciales: éxitos, remember y lo que esté sonando ahora.</p></div>
+      <div><span class="k">Grandes eventos</span><h3>Festivales y deporte</h3><p>He pinchado en MotoGP en Motorland Alcañiz y en Cheste. Sé trabajar con producción, horarios cerrados y mucho público.</p></div>
+      <div><span class="k">Booking</span><h3>Te busco DJ</h3><p>Si tu fecha está ocupada o necesitas más de un DJ, te conecto con DJs de confianza de la zona.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="wrap bio">
+    <div class="photo">Foto principal<br>(en cabina, con gente detrás)</div>
+    <div class="bio-text">
+      <p class="eyebrow">Sobre mí</p>
+      <h2>Alberto Gascón</h2>
+      <p class="lead">Soy DJ, de Teruel y vivo en Valencia. Llevo 8 años pinchando y más de 200 bolos entre bodas, fiestas patronales, eventos privados y discotecas.</p>
+      <p>Además de DJ soy técnico de sonido: estudié el Grado Superior de Sonido para Audiovisuales y Espectáculos en Comenius y Producción Musical e Ingeniería de Sonido en Millenia Estudios. Eso se nota en cómo suena el equipo y en que los imprevistos técnicos se resuelven sin que la fiesta pare.</p>
+      <dl class="facts">
+        <div><dt>Base</dt><dd>Valencia</dd></div>
+        <div><dt>Zona</dt><dd>Teruel · Valencia · Aragón</dd></div>
+        <div><dt>Experiencia</dt><dd>+200 bolos</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="donde">
+  <div class="wrap">
+    <p class="eyebrow">Dónde he pinchado</p>
+    <h2>Algunas cabinas</h2>
+    <ul class="venues">
+      <li>MotoGP Motorland<span>Alcañiz</span></li>
+      <li>MotoGP Cheste<span>Valencia</span></li>
+      <li>La Encerrona<span>Teruel · con DJ Pepo</span></li>
+      <li>Black<span>Andorra (Teruel)</span></li>
+      <li>Vaquillas del Ángel<span>Teruel</span></li>
+      <li>Fiestas patronales<span>Provincia de Teruel</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="wrap">
+    <p class="eyebrow">Cómo trabajo</p>
+    <h2>De la primera llamada a la pista</h2>
+    <ol class="steps">
+      <li><b>Me escribes</b>Fecha, lugar y tipo de evento. Con eso ya te digo si estoy libre.</li>
+      <li><b>Presupuesto</b>Te paso precio cerrado según horas, equipo y desplazamiento.</li>
+      <li><b>Contrato</b>Reservamos la fecha por escrito para que los dos estemos tranquilos.</li>
+      <li><b>El día</b>Llego con tiempo, monto, pruebo y la fiesta empieza a su hora.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="rider">
+  <div class="wrap">
+    <p class="eyebrow">Para organizadores</p>
+    <h2>Rider técnico</h2>
+    <div class="rider">
+      <div class="opt"><span class="eyebrow">Opción 1</span><h3>Llevo mi equipo</h3><ul><li>Controladora <b>Denon DJ Prime 4</b> propia.</li><li>Solo necesito mesa estable, toma de corriente y conexión al equipo de sonido.</li></ul></div>
+      <div class="opt b"><span class="eyebrow">Opción 2</span><h3>Cabina del organizador</h3><ul><li>Reproductores <b>Pioneer CDJ-3000</b> o superiores.</li><li>Mesa <b>DJM-900NXS2</b>, <b>DJM-A9</b> o <b>DJM-V10</b>.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="booking-djs">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Booking</p>
+      <h2>¿Buscas DJ para tus fiestas?</h2>
+      <p>Para comisiones de fiestas, ayuntamientos y salas: os organizo el cartel con DJs de la zona que conozco y en los que confío. Un solo contacto para todas las noches.</p>
+    </div>
+    <div><a class="btn" href="#presupuesto">Cuéntame qué necesitas</a></div>
+  </div>
+</section>
+
+<section id="presupuesto">
+  <div class="wrap contact">
+    <div class="contact-info">
+      <p class="eyebrow">Presupuesto</p>
+      <h2>¿Tienes un evento?</h2>
+      <p>Escríbeme por WhatsApp o rellena el formulario con la fecha y el lugar. Te contesto con disponibilidad y precio.</p>
+      <p class="mail ph">WhatsApp: número por confirmar</p>
+      <p class="mail ph">Email: por confirmar</p>
+    </div>
+    <form id="bookform" novalidate>
+      <label>Nombre<input id="f-name" name="name" autocomplete="name" placeholder="Tu nombre"></label>
+      <label>Teléfono<input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="600 000 000"></label>
+      <label>Tipo de evento
+        <select id="f-type" name="type"><option>Boda</option><option>Fiestas patronales</option><option>Evento privado</option><option>Empresa</option><option>Discoteca</option><option>Booking de DJs</option><option>Otro</option></select>
+      </label>
+      <label>Fecha<input id="f-date" name="date" type="date"></label>
+      <label>Localidad<input id="f-venue" name="venue" placeholder="Ej. Teruel"></label>
+      <label>Invitados (aprox.)<input id="f-guests" name="guests" inputmode="numeric" placeholder="150"></label>
+      <label class="full">Mensaje<textarea id="f-msg" name="msg" placeholder="Horario, si hay equipo de sonido en el sitio, música que os gusta…"></textarea></label>
+      <div><button class="btn" type="submit">Pedir presupuesto</button></div>
+      <p class="sent" id="sent" hidden>En el prototipo el formulario no envía nada. En la web real te llegará al correo o al WhatsApp.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/img/logo-blanco.png" alt="Alberto Gascón">
+    <span>DJ para bodas, fiestas y eventos · Teruel · Valencia · Aragón</span>
+    <span>© 2026 Alberto Gascón</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var RED = getComputedStyle(document.documentElement).getPropertyValue('--red').trim() || '#e3071a';
+  var eq = document.getElementById('eq'), t0 = performance.now();
+  function drawEq(now) {
+    var w = eq.clientWidth, h = eq.clientHeight, dpr = window.devicePixelRatio || 1;
+    if (eq.width !== Math.round(w * dpr)) { eq.width = Math.round(w * dpr); eq.height = Math.round(h * dpr); }
+    var g = eq.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+    var t = (now - t0) / 1000, beat = (t * 124 / 60) % 1, kick = Math.exp(-beat * 6);
+    var n = Math.floor(w / 14);
+    for (var i = 0; i < n; i++) {
+      var x = i / n;
+      var v = 0.18 + 0.5 * Math.pow(1 - x, 2) * kick + 0.25 * Math.abs(Math.sin(i * 0.7 + t * 2.1)) * Math.abs(Math.cos(i * 0.13 + t * 0.9));
+      var bh = v * h, grd = g.createLinearGradient(0, h - bh, 0, h);
+      grd.addColorStop(0, RED); grd.addColorStop(1, 'rgba(143,6,18,0)');
+      g.fillStyle = grd; g.fillRect(i * 14, h - bh, 8, bh);
+    }
+  }
+  function frame(now) { drawEq(now); if (!reduce) requestAnimationFrame(frame); }
+  frame(performance.now());
+  document.getElementById('bookform').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('sent').hidden = false;
+  });
+})();
+</script>
+
+</body>
+</html>
