@@ -10,243 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
-/* Layout: una noche de evento en orden. Intro con telón magenta, cinta de servicios, tarjetas que se apilan, cifras, cabinas, banda magenta del proceso, rider y presupuesto. */
-:root {
-  --ink: #121011;
-  --ink-2: #1a1919;
-  --ink-3: #231f21;
-  --line: #342c30;
-  --paper: #f5f1f2;
-  --muted: #a0959a;
-  --pink: #d8127e;
-  --pink-hot: #ff2a97;
-  --pink-deep: #7d0a4c;
-  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
-  --f-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --ease: cubic-bezier(.76, 0, .24, 1);
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --gut-l: max(16px, env(safe-area-inset-left, 0px));
-  --gut-r: max(16px, env(safe-area-inset-right, 0px));
-  color-scheme: dark;
-}
-* { box-sizing: border-box }
-html { -webkit-text-size-adjust: 100% }
-body { margin: 0; background: var(--ink); color: var(--paper); font: 400 17px/1.6 var(--f-body); overflow-x: hidden }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink) }
-body::after { content: ""; position: fixed; inset: 0; z-index: 70; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
-img { max-width: 100%; display: block }
-a { color: inherit }
-[hidden] { display: none !important }
-:focus-visible { outline: 2px solid var(--pink-hot); outline-offset: 4px }
-::selection { background: var(--pink); color: #fff }
-.wrap { max-width: 1240px; margin: 0 auto; padding-left: var(--gut-l); padding-right: var(--gut-r) }
-.mono { font-family: var(--f-mono) }
-
-/* Telón de entrada */
-.curtain { position: fixed; inset: 0; z-index: 80; background: var(--pink); display: grid; place-items: center; pointer-events: none;
-  animation: curtain 1.1s var(--ease) .35s both }
-.curtain span { font: 600 12px/1 var(--f-mono); letter-spacing: .3em; text-transform: uppercase; color: #fff; animation: fadeout .3s ease .3s both }
-@keyframes curtain { to { transform: translateY(-101%) } }
-@keyframes fadeout { to { opacity: 0 } }
-
-/* Navegación */
-nav { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 50; transition: background .4s, border-color .4s; border-bottom: 1px solid transparent }
-nav.solid { background: color-mix(in srgb, var(--ink) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line) }
-nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px }
-nav .brand img { height: 26px; width: auto }
-nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0 }
-nav ul a { position: relative; text-decoration: none; font: 500 13px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); transition: color .3s }
-nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--pink-hot); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease) }
-nav ul a:hover { color: var(--paper) }
-nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
-@media (max-width: 860px) { nav ul { display: none } }
-
-/* Botones */
-.btn { --bg: var(--pink); position: relative; overflow: hidden; isolation: isolate; display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; border: 1px solid var(--bg); background: var(--bg); color: #fff; text-decoration: none; cursor: pointer;
-  font: 600 13px/1 var(--f-display); letter-spacing: .04em; text-transform: uppercase; transition: transform .5s var(--ease-out), color .4s }
-.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--paper); border-radius: inherit; transform: translateY(101%); transition: transform .55s var(--ease) }
-.btn:hover { color: var(--ink) }
-.btn:hover::before { transform: translateY(0) }
-.btn .arr { display: inline-block; transition: transform .5s var(--ease) }
-.btn:hover .arr { transform: translateX(4px) rotate(-45deg) }
-.btn.ghost { --bg: transparent; border-color: color-mix(in srgb, var(--paper) 35%, transparent); color: var(--paper) }
-.btn.small { padding: 12px 18px; font-size: 11px }
-
-/* Hero */
-.hero { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; padding-block: 120px 80px; isolation: isolate }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(600px circle at var(--mx, 70%) var(--my, 40%), color-mix(in srgb, var(--pink) 32%, transparent), transparent 60%),
-              radial-gradient(900px circle at 10% 110%, color-mix(in srgb, var(--pink-deep) 60%, transparent), transparent 60%) }
-.hero .grid-lines { position: absolute; inset: 0; z-index: -1; opacity: .35;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 80px 80px; mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%) }
-.hero .wrap { display: grid; gap: 36px; width: 100% }
-.kicker { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; font: 500 12px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted) }
-.kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink-hot); box-shadow: 0 0 0 0 var(--pink-hot); animation: pulse 2s infinite }
-@keyframes pulse { 70% { box-shadow: 0 0 0 10px transparent } 100% { box-shadow: 0 0 0 0 transparent } }
-.logo-stage { perspective: 1000px; width: min(1050px, 100%) }
-.logo-stage img { width: 100%; height: auto; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .6s var(--ease-out); filter: drop-shadow(0 30px 60px rgba(216, 18, 126, .35));
-  animation: logoIn 1.4s var(--ease-out) 1s both }
-@keyframes logoIn { from { opacity: 0; transform: translateY(60px) scale(.96); filter: blur(12px) } }
-.hero h1 { margin: 0; max-width: 22ch; font: 600 clamp(22px, 3.2vw, 38px)/1.2 var(--f-display); letter-spacing: -.01em; text-wrap: balance }
-.hero h1 em { font-style: normal; color: var(--pink-hot) }
-.line-mask { display: block; overflow: hidden; padding-bottom: .08em }
-.line-mask > span { display: inline-block; animation: rise 1.1s var(--ease-out) both }
-.line-mask:nth-child(1) > span { animation-delay: 1.25s }
-.line-mask:nth-child(2) > span { animation-delay: 1.35s }
-@keyframes rise { from { transform: translateY(110%) } }
-.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; animation: fadeup 1s var(--ease-out) 1.55s both }
-@keyframes fadeup { from { opacity: 0; transform: translateY(24px) } }
-.ctas { display: flex; flex-wrap: wrap; gap: 12px }
-.scroll-cue { display: flex; align-items: center; gap: 12px; font: 500 11px/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--muted) }
-.scroll-cue i { width: 1px; height: 44px; background: var(--line); position: relative; overflow: hidden }
-.scroll-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--pink-hot); animation: drip 1.8s var(--ease) infinite }
-@keyframes drip { to { top: 100% } }
-
-/* Cinta */
-.marquee { border-block: 1px solid var(--line); overflow: hidden; background: var(--ink-2); padding-block: 22px }
-.marquee .track { display: flex; width: max-content; animation: marquee 32s linear infinite }
-.marquee:hover .track { animation-play-state: paused }
-.marquee span { font: 800 clamp(26px, 4.4vw, 56px)/1 var(--f-display); text-transform: uppercase; padding-inline: 28px; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--paper) 55%, transparent) }
-.marquee span:nth-child(odd) { color: var(--paper); -webkit-text-stroke: 0 }
-.marquee span.star { color: var(--pink); -webkit-text-stroke: 0; padding-inline: 8px }
-@keyframes marquee { to { transform: translateX(-50%) } }
-
-/* Secciones */
-section { position: relative; padding-block: clamp(80px, 12vw, 160px) }
-.sec-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px) }
-.eyebrow { display: inline-flex; gap: 10px; align-items: center; font: 500 12px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--pink-hot); margin: 0 0 18px }
-.eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor }
-h2 { margin: 0; font: 800 clamp(34px, 6.4vw, 84px)/.98 var(--f-display); letter-spacing: -.03em; text-transform: uppercase; text-wrap: balance }
-h2 .out { color: transparent; -webkit-text-stroke: 1.5px var(--paper) }
-h3 { margin: 0; font: 600 clamp(22px, 2.6vw, 32px)/1.1 var(--f-display); letter-spacing: -.01em }
-p { margin: 0 }
-.ph { color: var(--muted); font-style: italic }
-@media (max-width: 700px) { .sec-head { grid-template-columns: 1fr } }
-
-/* Aparición al hacer scroll (solo navegadores con scroll-driven animations; sin soporte, todo se ve directamente) */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% cover 28% }
-    @keyframes reveal { from { opacity: .15; transform: translateY(70px); clip-path: inset(0 0 18% 0) } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0) } }
-    .grow { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 45% }
-    @keyframes grow { from { transform: scaleX(.86); border-radius: 48px } to { transform: none; border-radius: 0 } }
-    .card { animation: shrink linear both; animation-timeline: view(); animation-range: exit-crossing 0% exit-crossing 100% }
-    @keyframes shrink { to { transform: scale(.9); filter: brightness(.5) } }
-  }
-}
-
-/* Servicios: tarjetas apiladas */
-.stack { display: grid; gap: 22px }
-.card { position: sticky; top: calc(90px + var(--i) * 18px); display: grid; grid-template-columns: 90px 1fr minmax(0, 340px); gap: clamp(18px, 3vw, 48px); align-items: start;
-  padding: clamp(26px, 4vw, 52px); background: var(--ink-2); border: 1px solid var(--line); border-radius: 28px; transform-origin: center top; min-height: 260px }
-.card:nth-child(even) { background: var(--ink-3) }
-.card .n { font: 500 13px/1 var(--f-mono); color: var(--pink-hot); padding-top: 10px }
-.card h3 { font-size: clamp(28px, 4vw, 52px); text-transform: uppercase; letter-spacing: -.03em }
-.card p { color: var(--muted); min-width: 0 }
-.card .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px }
-.card .tags span { font: 500 11px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--paper) }
-.card.hot { background: var(--pink); border-color: var(--pink) }
-.card.hot .n, .card.hot p { color: #fff }
-.card.hot .tags span { border-color: rgba(255,255,255,.45) }
-@media (max-width: 760px) { .card { grid-template-columns: 1fr; position: relative; top: auto; min-height: 0 } .card .n { padding-top: 0 } }
-
-/* Sobre mí */
-.about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: center }
-.portrait { position: relative; aspect-ratio: 4/5; max-width: 100%; border-radius: 28px; overflow: hidden; border: 1px solid var(--line);
-  background: radial-gradient(120% 90% at 20% 10%, var(--pink-deep), var(--ink-2) 65%); display: grid; place-items: end start; padding: 26px }
-.portrait::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px) }
-.portrait span { position: relative; z-index: 1; font: 500 12px/1.5 var(--f-mono); color: var(--paper); opacity: .8 }
-.about-text { display: grid; gap: 22px; min-width: 0 }
-.about-text .lead { font: 400 clamp(20px, 2.2vw, 26px)/1.45 var(--f-body); max-width: 34ch }
-.about-text .lead b { font-weight: 600; color: var(--pink-hot) }
-.about-text p.body { color: var(--muted); max-width: 60ch }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); margin-top: 10px }
-.stats div { padding: 22px 16px 0 0 }
-.stats b { display: block; font: 800 clamp(34px, 5vw, 64px)/1 var(--f-display); letter-spacing: -.04em; font-variant-numeric: tabular-nums }
-.stats b sup { font-size: .45em; color: var(--pink-hot); vertical-align: super }
-.stats span { font: 500 11px/1.4 var(--f-mono); color: var(--muted); letter-spacing: .1em; text-transform: uppercase }
-@media (max-width: 860px) { .about { grid-template-columns: 1fr } .portrait { aspect-ratio: 16/11 } }
-
-/* Cabinas */
-.venues { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line) }
-.venues li { position: relative; display: grid; grid-template-columns: 60px minmax(0, 1fr) auto; align-items: center; gap: 20px; padding: 26px 8px; border-bottom: 1px solid var(--line); overflow: hidden; isolation: isolate; transition: color .4s, padding .5s var(--ease) }
-.venues li::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--pink); clip-path: inset(0 100% 0 0); transition: clip-path .6s var(--ease) }
-.venues li:hover { padding-left: 24px }
-.venues li:hover::before { clip-path: inset(0 0 0 0) }
-.venues .i { font: 500 12px/1 var(--f-mono); color: var(--muted); transition: color .4s }
-.venues li:hover .i, .venues li:hover .where { color: #fff }
-.venues .name { font: 600 clamp(22px, 3.6vw, 46px)/1.05 var(--f-display); text-transform: uppercase; letter-spacing: -.02em }
-.venues .where { font: 400 13px/1.4 var(--f-mono); color: var(--muted); text-align: right; transition: color .4s }
-@media (max-width: 600px) { .venues li { grid-template-columns: 1fr; gap: 6px } .venues .where { text-align: left } .venues .i { display: none } }
-
-/* Proceso: banda magenta */
-.band { background: var(--pink); color: #fff; transform-origin: center }
-.band .eyebrow { color: #fff }
-.band h2 .out { -webkit-text-stroke-color: #fff }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.4) }
-.steps li { padding: 26px 22px 0 0; display: grid; gap: 12px; align-content: start }
-.steps .k { font: 800 clamp(44px, 6vw, 80px)/1 var(--f-display); letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1.5px #fff }
-.steps b { font: 600 18px/1.2 var(--f-display); text-transform: uppercase }
-.steps p { color: rgba(255,255,255,.85); font-size: 16px }
-@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px } }
-@media (max-width: 480px) { .steps { grid-template-columns: 1fr } }
-
-/* Rider */
-.rider { display: grid; grid-template-columns: 1fr 1fr; gap: 22px }
-.opt { padding: clamp(26px, 4vw, 44px); border-radius: 28px; border: 1px solid var(--line); background: var(--ink-2); display: grid; gap: 16px; align-content: start; min-width: 0; transition: border-color .4s, transform .6s var(--ease-out) }
-.opt:hover { border-color: var(--pink); transform: translateY(-6px) }
-.opt .tag { font: 500 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pink-hot) }
-.opt ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--muted) }
-.opt li { display: flex; gap: 12px }
-.opt li::before { content: "→"; color: var(--pink-hot) }
-.opt li b { color: var(--paper); font-weight: 600 }
-@media (max-width: 760px) { .rider { grid-template-columns: 1fr } }
-
-/* Booking */
-.booking { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 5vw, 80px); align-items: end; padding: clamp(32px, 6vw, 80px); border-radius: 36px; border: 1px solid var(--line);
-  background: radial-gradient(700px circle at 100% 0%, color-mix(in srgb, var(--pink) 30%, transparent), transparent 60%), var(--ink-2) }
-.booking p { color: var(--muted); max-width: 52ch; margin-top: 22px }
-@media (max-width: 860px) { .booking { grid-template-columns: 1fr } }
-
-/* Presupuesto */
-.contact { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 6vw, 96px) }
-.contact-info { display: grid; gap: 22px; align-content: start; min-width: 0 }
-.contact-info p { color: var(--muted) }
-.channel { display: grid; gap: 4px; padding: 18px 0; border-top: 1px solid var(--line) }
-.channel span { font: 500 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted) }
-.channel b { font: 600 clamp(17px, 2vw, 22px)/1.3 var(--f-display); word-break: break-word }
-.channel b.ph { font-weight: 400; font-family: var(--f-body); color: var(--muted) }
-form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 22px; min-width: 0 }
-.field { position: relative; display: grid; min-width: 0 }
-.field.full { grid-column: 1 / -1 }
-.field label { font: 500 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; transition: color .3s }
-.field input, .field select, .field textarea { width: 100%; font: 400 18px/1.4 var(--f-body); color: var(--paper); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0 12px; border-radius: 0; outline: none }
-.field select option { background: var(--ink-2) }
-.field textarea { min-height: 110px; resize: vertical }
-.field::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--pink-hot); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease) }
-.field:focus-within::after { transform: scaleX(1) }
-.field:focus-within label { color: var(--pink-hot) }
-.sent { grid-column: 1 / -1; font: 400 13px/1.5 var(--f-mono); color: var(--paper); border-left: 2px solid var(--pink-hot); padding-left: 14px }
-@media (max-width: 860px) { .contact { grid-template-columns: 1fr } }
-@media (max-width: 560px) { form { grid-template-columns: 1fr } }
-
-/* Pie */
-footer { border-top: 1px solid var(--line); overflow: hidden }
-footer .big { font: 800 clamp(34px, 8.6vw, 140px)/.85 var(--f-display); letter-spacing: -.05em; text-transform: uppercase; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px var(--line); padding-block: clamp(28px, 5vw, 60px) 0; text-align: center; user-select: none }
-footer .row { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; padding-block: 28px; font: 400 12px/1.5 var(--f-mono); color: var(--muted) }
-footer .row a { text-decoration: none }
-footer .row a:hover { color: var(--pink-hot) }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important }
-  .curtain { display: none }
-  .marquee .track { animation: none }
-}
-</style>
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
@@ -258,8 +22,9 @@ footer .row a:hover { color: var(--pink-hot) }
     <ul>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li><a href="#cabinas">Cabinas</a></li>
-      <li><a href="#rider">Rider</a></li>
+      <li><a href="tour.html">On Tour</a></li>
+      <li><a href="presskit.html">Press kit</a></li>
+      <li><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">Instagram</a></li>
     </ul>
     <a class="btn small" href="#presupuesto">Presupuesto <span class="arr">→</span></a>
   </div>
@@ -340,6 +105,16 @@ footer .row a:hover { color: var(--pink-hot) }
   </div>
 </section>
 
+<section id="on-tour" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">On Tour</p><h2>Próximas <span class="out">fechas</span></h2></div>
+      <a class="btn ghost" href="tour.html">Todas las fechas <span class="arr">→</span></a>
+    </div>
+    <ul class="tour reveal" data-tour="proximas" data-limit="3"></ul>
+  </div>
+</section>
+
 <section class="band grow" id="proceso">
   <div class="wrap">
     <div class="sec-head">
@@ -358,6 +133,7 @@ footer .row a:hover { color: var(--pink-hot) }
   <div class="wrap">
     <div class="sec-head reveal">
       <div><p class="eyebrow">Para organizadores</p><h2>Rider <span class="out">técnico</span></h2></div>
+      <a class="btn ghost" href="presskit.html">Ver press kit <span class="arr">→</span></a>
     </div>
     <div class="rider reveal">
       <div class="opt"><span class="tag">Opción 1</span><h3>Llevo mi equipo</h3><ul><li><span>Controladora <b>Denon DJ Prime 4</b> propia.</span></li><li><span>Solo necesito mesa estable, toma de corriente y conexión al equipo de sonido.</span></li></ul></div>
@@ -387,6 +163,7 @@ footer .row a:hover { color: var(--pink-hot) }
       <p>Escríbeme por WhatsApp o rellena el formulario con la fecha y el lugar. Te contesto con disponibilidad y precio.</p>
       <div>
         <div class="channel"><span>Email</span><b>contacto@albertogascon.com</b></div>
+        <div class="channel"><span>Instagram</span><b><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">@albertogascon_</a></b></div>
         <div class="channel"><span>WhatsApp</span><b class="ph">Número por confirmar</b></div>
       </div>
     </div>
@@ -411,11 +188,13 @@ footer .row a:hover { color: var(--pink-hot) }
   <div class="big" aria-hidden="true">Alberto Gascón</div>
   <div class="wrap row">
     <span>DJ para discotecas, festivales y eventos · Teruel · Valencia · Aragón</span>
-    <a href="#top">Volver arriba ↑</a>
+    <span class="links"><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">Instagram</a> · <a href="presskit.html">Press kit</a> · <a href="#top">Arriba ↑</a></span>
     <span>© 2026 Alberto Gascón</span>
   </div>
 </footer>
 
+<script src="data/fechas.js"></script>
+<script src="assets/js/tour.js"></script>
 <script>
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

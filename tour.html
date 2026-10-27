@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>On Tour · Alberto Gascón</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Próximas fechas de Alberto Gascón, DJ: discotecas, festivales y fiestas patronales en Teruel, Valencia y Aragón.">
+<meta name="theme-color" content="#121011">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.tour-hero { padding-block: 150px 60px; position: relative; overflow: hidden; isolation: isolate }
+.tour-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(800px circle at 15% 0%, color-mix(in srgb, var(--pink) 35%, transparent), transparent 60%) }
+.tour-hero h1 { margin: 0; font: 800 clamp(56px, 13vw, 190px)/.85 var(--f-display); letter-spacing: -.055em; text-transform: uppercase }
+.tour-hero h1 .out { color: transparent; -webkit-text-stroke: 1.5px var(--paper) }
+.tour-hero .line-mask:nth-child(1) > span { animation-delay: .1s }
+.tour-hero .line-mask:nth-child(2) > span { animation-delay: .2s }
+.tour-hero .sub { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: end; margin-top: 36px; animation: fadeup 1s var(--ease-out) .4s both }
+.tour-hero .sub p { color: var(--muted); max-width: 46ch }
+.count { font: 500 12px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted) }
+.count b { color: var(--pink-hot); font-size: 15px }
+.tour-sec { padding-block: 40px 100px }
+.tour-sec h2 { font-size: clamp(26px, 4vw, 48px); margin-bottom: 26px }
+</style>
+</head>
+<body>
+
+<nav id="nav" class="solid">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Inicio"><img src="assets/img/logo-blanco.png" alt="Alberto Gascón"></a>
+    <ul>
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="tour.html">On Tour</a></li>
+      <li><a href="presskit.html">Press kit</a></li>
+      <li><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <a class="btn small" href="index.html#presupuesto">Contratar <span class="arr">→</span></a>
+  </div>
+</nav>
+
+<header class="tour-hero">
+  <div class="wrap">
+    <h1><span class="line-mask"><span>On</span></span><span class="line-mask"><span class="out">Tour</span></span></h1>
+    <div class="sub">
+      <p>Dónde puedes verme pinchar las próximas noches: discotecas, festivales y fiestas. Los eventos privados y las bodas aparecen sin detalles.</p>
+      <span class="count"><b data-tour-count>0</b> próximas fechas</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="tour-sec">
+  <div class="wrap">
+    <p class="eyebrow">Próximas fechas</p>
+    <ul class="tour" data-tour="proximas"></ul>
+  </div>
+</section>
+<section class="tour-sec" data-tour-box style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Archivo</p>
+    <h2>Fechas <span class="out">pasadas</span></h2>
+    <ul class="tour" data-tour="pasadas" data-empty="hide"></ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="big" aria-hidden="true">Alberto Gascón</div>
+  <div class="wrap row">
+    <span>On Tour · Alberto Gascón DJ</span>
+    <span><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">Instagram</a> · <a href="index.html">Volver a la web</a></span>
+    <span>© 2026 Alberto Gascón</span>
+  </div>
+</footer>
+
+<script src="data/fechas.js"></script>
+<script src="assets/js/tour.js"></script>
+</body>
+</html>
