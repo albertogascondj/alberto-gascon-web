@@ -34,7 +34,7 @@ a { color: inherit }
 
 /* Telón de entrada */
 .curtain { position: fixed; inset: 0; z-index: 80; background: var(--pink); display: grid; place-items: center; pointer-events: none;
-  animation: curtain 1.1s var(--ease) .35s both }
+  animation: curtain .9s var(--ease) .15s both }
 .curtain span { font: 600 12px/1 var(--f-mono); letter-spacing: .3em; text-transform: uppercase; color: #fff; animation: fadeout .3s ease .3s both }
 @keyframes curtain { to { transform: translateY(-101%) } }
 @keyframes fadeout { to { opacity: 0 } }
@@ -76,16 +76,16 @@ nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
 @keyframes pulse { 70% { box-shadow: 0 0 0 10px transparent } 100% { box-shadow: 0 0 0 0 transparent } }
 .logo-stage { perspective: 1000px; width: min(1050px, 100%) }
 .logo-stage img { width: 100%; height: auto; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .6s var(--ease-out); filter: drop-shadow(0 30px 60px rgba(216, 18, 126, .35));
-  animation: logoIn 1.4s var(--ease-out) 1s both }
+  animation: logoIn 1.1s var(--ease-out) .6s both }
 @keyframes logoIn { from { opacity: 0; transform: translateY(60px) scale(.96); filter: blur(12px) } }
 .hero h1 { margin: 0; max-width: 22ch; font: 600 clamp(22px, 3.2vw, 38px)/1.2 var(--f-display); letter-spacing: -.01em; text-wrap: balance }
 .hero h1 em { font-style: normal; color: var(--pink-hot) }
 .line-mask { display: block; overflow: hidden; padding-bottom: .08em }
 .line-mask > span { display: inline-block; animation: rise 1.1s var(--ease-out) both }
-.line-mask:nth-child(1) > span { animation-delay: 1.25s }
-.line-mask:nth-child(2) > span { animation-delay: 1.35s }
+.line-mask:nth-child(1) > span { animation-delay: .8s }
+.line-mask:nth-child(2) > span { animation-delay: .9s }
 @keyframes rise { from { transform: translateY(110%) } }
-.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; animation: fadeup 1s var(--ease-out) 1.55s both }
+.hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; animation: fadeup 1s var(--ease-out) 1.05s both }
 @keyframes fadeup { from { opacity: 0; transform: translateY(24px) } }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px }
 .scroll-cue { display: flex; align-items: center; gap: 12px; font: 500 11px/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--muted) }
@@ -255,7 +255,7 @@ footer .row a:hover { color: var(--pink-hot) }
 .t-empty b { font: 600 clamp(20px, 2.6vw, 30px)/1.2 var(--f-display) }
 .t-empty span { color: var(--muted) }
 .t-empty a { color: var(--pink-hot) }
-@media (max-width: 640px) { .t-row { grid-template-columns: 1fr; gap: 12px } .t-act { justify-self: start } }
+@media (max-width: 640px) { .t-row { grid-template-columns: 1fr; gap: 12px } .t-act { justify-self: start; justify-content: flex-start } }
 
 /* Redes */
 .social-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; padding-block: 34px 6px }
@@ -263,3 +263,18 @@ footer .row a:hover { color: var(--pink-hot) }
 .ig { display: inline-flex; align-items: center; gap: 12px; color: var(--pink-hot); text-decoration: none; font: 500 13px/1 var(--f-mono) }
 .ig svg { width: 44px; height: 44px; padding: 10px; border: 1px solid var(--pink); border-radius: 50%; transition: background .35s, color .35s, transform .5s var(--ease-out) }
 .ig:hover svg { background: var(--pink); color: #fff; transform: rotate(-8deg) scale(1.08) }
+
+/* Preguntas frecuentes */
+.faq { border-top: 1px solid var(--line) }
+.faq details { border-bottom: 1px solid var(--line) }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 24px 4px; font: 600 clamp(17px, 2vw, 22px)/1.3 var(--f-display) }
+.faq summary::-webkit-details-marker { display: none }
+.faq summary::after { content: "+"; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--pink-hot); font: 400 20px/1 var(--f-mono); transition: transform .5s var(--ease), background .3s }
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--pink); color: #fff; border-color: var(--pink) }
+.faq summary:hover { color: var(--pink-hot) }
+.faq details p { color: var(--muted); max-width: 70ch; padding: 0 4px 26px }
+.t-act { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end }
+.t-pin { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--paper); font: 500 11px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase }
+.t-pin svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; border: 1px solid var(--pink); color: var(--pink-hot); transition: background .35s, color .35s, transform .5s var(--ease-out) }
+.t-pin:hover svg { background: var(--pink); color: #fff; transform: translateY(-4px) }
+.t-pin:hover svg circle { fill: var(--pink) }

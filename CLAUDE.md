@@ -10,7 +10,9 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 
 - `index.html`: portada. `tour.html`: On Tour. `presskit.html`: press kit.
 - `assets/css/site.css`: estilos comunes. `assets/js/tour.js`: pinta las fechas.
-- `data/fechas.js`: **lista de fechas** (una línea por fecha; la web separa próximas y pasadas sola).
+- `data/fechas.js`: **lista de fechas** (una línea por fecha; la web separa próximas y pasadas sola). Tras cambiarla: `python3 tools/build.py`.
+- `tools/build.py`: regenera JSON-LD (persona, servicio, FAQ, eventos) y `sitemap.xml`. `tools/seo_head.py`: títulos, descripciones y etiquetas OG de cada página.
+- `SEO.md`: lo hecho y lo pendiente de SEO.
 - `assets/presskit/alberto-gascon-logos.zip`: logos para descargar.
 - `assets/img/`: imágenes optimizadas que usa la web.
 - `assets/logos/`: logos originales (rojo, negro, blanco, rosa).
@@ -25,7 +27,6 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 ## Pendiente
 
 - Número de WhatsApp para el botón de contacto.
-- Fechas reales para `data/fechas.js`.
 - Instagram: @albertogascon_ (ya enlazado).
 - Fotos (en `assets/fotos/`).
 - Prototipo online: https://claude.ai/artifact/E5chYQWZPdUfxiUyqbF37T

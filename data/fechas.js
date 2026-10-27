@@ -9,6 +9,7 @@
   tipo:     "Discoteca" | "Festival" | "Fiestas patronales" | "Evento privado" | "Evento corporativo" | "Boda"
   entradas: enlace a la venta de entradas, o "" si no hay
   privado:  true para eventos privados o bodas (se muestra sin detalles de sala)
+  mapa:     opcional, dirección exacta para el pin del mapa si no basta con "sala, ciudad"
 
   Ejemplo:
   { fecha: "2026-11-14", hora: "02:00–04:00", sala: "Nombre de la sala", ciudad: "Teruel", tipo: "Discoteca", entradas: "", privado: false },

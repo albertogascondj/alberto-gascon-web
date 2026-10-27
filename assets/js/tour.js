@@ -13,9 +13,11 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function fila(f, pasada) {
     var sala = f.privado ? (f.tipo || 'Evento privado') : f.sala;
+    var donde = f.mapa || ((f.privado ? '' : f.sala + ', ') + f.ciudad);
+    var pin = '<a class="t-pin" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(donde) + '" target="_blank" rel="noopener" aria-label="Ver ' + esc(donde) + ' en el mapa">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="var(--ink)"/></svg><span>Mapa</span></a>';
     var accion = pasada ? '<span class="t-tag">Hecho</span>'
-      : f.entradas ? '<a class="t-tag hot" href="' + esc(f.entradas) + '" target="_blank" rel="noopener">Entradas →</a>'
-      : f.privado ? '<span class="t-tag">Privado</span>' : '<span class="t-tag">Confirmado</span>';
+      : (f.entradas ? '<a class="t-tag hot" href="' + esc(f.entradas) + '" target="_blank" rel="noopener">Entradas →</a>' : '') + pin;
     return '<li class="t-row' + (pasada ? ' past' : '') + '">' +
       '<div class="t-date"><b>' + f.d.getDate() + '</b><span>' + MESES[f.d.getMonth()] + ' ' + f.d.getFullYear() + '</span><small>' + DIAS[f.d.getDay()] + (f.hora ? ' · ' + esc(f.hora) : '') + '</small></div>' +
       '<div class="t-main"><span class="t-venue">' + esc(sala) + '</span><span class="t-city">' + esc(f.ciudad) + (f.tipo && !f.privado ? ' · ' + esc(f.tipo) : '') + '</span></div>' +
