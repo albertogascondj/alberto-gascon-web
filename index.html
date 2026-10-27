@@ -597,14 +597,11 @@
 <section id="sesiones" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><p class="eyebrow">Sesiones</p><h2>Dale al <span class="out">play</span></h2></div>
+      <div><p class="eyebrow">Sesiones</p><h2>Última <span class="out">sesión</span></h2></div>
       <a class="btn ghost" href="https://www.youtube.com/@albertogascondj" target="_blank" rel="noopener">Canal de YouTube <span class="arr">→</span></a>
     </div>
     <article class="session reveal">
-      <button class="yt" type="button" data-yt="7f0NIY4une8" aria-label="Reproducir la sesión en Jardines de Tabarca con Alex Giménez">
-        <img src="assets/img/sesiones/jardines-de-tabarca-720.webp" srcset="assets/img/sesiones/jardines-de-tabarca-720.webp 720w, assets/img/sesiones/jardines-de-tabarca-1280.webp 1280w, assets/img/sesiones/jardines-de-tabarca-2560.webp 2560w" sizes="(max-width: 1440px) 100vw, 1440px" width="1280" height="720" loading="lazy" alt="Alberto Gascón y Alex Giménez pinchando en Jardines de Tabarca">
-        <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
-      </button>
+      <iframe class="yt-frame" src="https://www.youtube-nocookie.com/embed/7f0NIY4une8?rel=0&amp;playsinline=1" title="Sesión de Alberto Gascón y Alex Giménez en Jardines de Tabarca" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <div class="session-meta">
         <h3>Jardines de Tabarca</h3>
         <p>Con Alex Giménez · 1 hora</p>
@@ -776,20 +773,6 @@
     }, { threshold: .6 });
     document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
   }
-
-  // Sesiones: el vídeo de YouTube solo se carga al darle al play
-  document.querySelectorAll('[data-yt]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0&playsinline=1&modestbranding=1&vq=hd1080';
-      f.referrerPolicy = 'strict-origin-when-cross-origin';
-      f.className = 'yt-frame';
-      f.title = b.getAttribute('aria-label').replace('Reproducir ', '');
-      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-      f.allowFullscreen = true;
-      b.replaceWith(f);
-    });
-  });
 
   // Galería con visor
   var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'),
