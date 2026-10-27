@@ -6,6 +6,7 @@ import re, json, html, datetime, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://albertogascon.com"
 IG = "https://www.instagram.com/albertogascon_/"
+YT = "https://www.youtube.com/@albertogascondj"
 EMAIL = "contacto@albertogascon.com"
 TODAY = datetime.date.today()
 
@@ -22,7 +23,7 @@ PERSON = {
     "name": "Alberto Gascón", "jobTitle": "DJ", "birthDate": "2002", "birthPlace": {"@type": "Place", "name": "Teruel, España"},
     "description": "DJ de Teruel con base en Valencia, pinchando desde los 13 años y profesional desde hace 8, para discotecas, festivales, fiestas patronales, eventos privados y corporativos y bodas.",
     "url": SITE + "/", "image": SITE + "/assets/img/og.jpg", "email": EMAIL,
-    "sameAs": [IG],
+    "sameAs": [IG, YT],
     "homeLocation": {"@type": "Place", "name": "Valencia, España"},
     "alumniOf": [
         {"@type": "EducationalOrganization", "name": "Comenius (Valencia)"},
@@ -35,7 +36,7 @@ SERVICES = ["DJ para discotecas", "DJ para festivales", "DJ para fiestas patrona
 BUSINESS = {
     "@type": ["ProfessionalService", "EntertainmentBusiness"], "@id": SITE + "/#negocio",
     "name": "Alberto Gascón DJ", "url": SITE + "/", "image": SITE + "/assets/img/og.jpg", "logo": SITE + "/assets/img/icons/icon-512.png",
-    "email": EMAIL, "sameAs": [IG], "founder": {"@id": SITE + "/#alberto"},
+    "email": EMAIL, "sameAs": [IG, YT], "founder": {"@id": SITE + "/#alberto"},
     "description": "Servicio de DJ en Teruel, Valencia, Aragón y toda España: discotecas, festivales, fiestas patronales, eventos privados y corporativos, bodas y booking de DJs.",
     "address": {"@type": "PostalAddress", "addressLocality": "Valencia", "addressRegion": "Valencia", "addressCountry": "ES"},
     "areaServed": AREAS,
