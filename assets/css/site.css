@@ -147,7 +147,10 @@ button.g-item:focus-visible { outline: 2px solid var(--pink-hot); outline-offset
 
 /* Sesiones */
 .session { display: grid; gap: 22px }
-.session .yt, .session iframe { display: block; width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 24px; overflow: hidden; background: var(--ink-2); position: relative; padding: 0; cursor: pointer; isolation: isolate }
+/* El reproductor ocupa todo lo que permite la pantalla (ancho y alto), hasta 1440 px */
+.session { --pw: min(100vw - 32px, 1440px, (100svh - 150px) * 16 / 9) }
+.session .yt, .session .yt-frame { width: var(--pw); margin-left: calc((100% - var(--pw)) / 2) }
+.session .yt, .session iframe { display: block; aspect-ratio: 16/9; border: 0; border-radius: 24px; overflow: hidden; background: var(--ink-2); position: relative; padding: 0; cursor: pointer; isolation: isolate }
 .session .yt img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out) }
 .session .yt::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px var(--line); border-radius: inherit; background: rgba(18,16,17,.15); transition: background .5s }
 .session .yt:hover img { transform: scale(1.03) }

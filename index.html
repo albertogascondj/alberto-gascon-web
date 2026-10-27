@@ -602,7 +602,7 @@
     </div>
     <article class="session reveal">
       <button class="yt" type="button" data-yt="7f0NIY4une8" aria-label="Reproducir la sesión en Jardines de Tabarca con Alex Giménez">
-        <img src="assets/img/sesiones/jardines-de-tabarca-720.webp" srcset="assets/img/sesiones/jardines-de-tabarca-720.webp 720w, assets/img/sesiones/jardines-de-tabarca-1280.webp 1280w" sizes="(max-width: 1240px) 92vw, 1200px" width="1280" height="720" loading="lazy" alt="Alberto Gascón y Alex Giménez pinchando en Jardines de Tabarca">
+        <img src="assets/img/sesiones/jardines-de-tabarca-720.webp" srcset="assets/img/sesiones/jardines-de-tabarca-720.webp 720w, assets/img/sesiones/jardines-de-tabarca-1280.webp 1280w, assets/img/sesiones/jardines-de-tabarca-2560.webp 2560w" sizes="(max-width: 1440px) 100vw, 1440px" width="1280" height="720" loading="lazy" alt="Alberto Gascón y Alex Giménez pinchando en Jardines de Tabarca">
         <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
       </button>
       <div class="session-meta">
@@ -781,7 +781,9 @@
   document.querySelectorAll('[data-yt]').forEach(function (b) {
     b.addEventListener('click', function () {
       var f = document.createElement('iframe');
-      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&rel=0&playsinline=1&modestbranding=1&vq=hd1080';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.className = 'yt-frame';
       f.title = b.getAttribute('aria-label').replace('Reproducir ', '');
       f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       f.allowFullscreen = true;
