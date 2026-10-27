@@ -601,7 +601,7 @@
       <a class="btn ghost" href="https://www.youtube.com/@albertogascondj" target="_blank" rel="noopener">Canal de YouTube <span class="arr">→</span></a>
     </div>
     <article class="session reveal">
-      <iframe class="yt-frame" src="https://www.youtube-nocookie.com/embed/7f0NIY4une8?rel=0&amp;playsinline=1" title="Sesión de Alberto Gascón y Alex Giménez en Jardines de Tabarca" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe class="yt-frame" src="https://www.youtube-nocookie.com/embed/7f0NIY4une8?rel=0&amp;playsinline=1&amp;vq=hd1080&amp;enablejsapi=1&amp;origin=https://albertogascon.com" title="Sesión de Alberto Gascón y Alex Giménez en Jardines de Tabarca" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <div class="session-meta">
         <h3>Jardines de Tabarca</h3>
         <p>Con Alex Giménez · 1 hora</p>
@@ -773,6 +773,25 @@
     }, { threshold: .6 });
     document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
   }
+
+  // Sesiones: el vídeo se silencia al salir de la pantalla y recupera el sonido al volver
+  document.querySelectorAll('.session iframe').forEach(function (f) {
+    var muted = false, byUs = false;
+    function send(func, args) { f.contentWindow && f.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*'); }
+    f.addEventListener('load', function () {
+      f.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'sesion' }), '*');
+      send('setPlaybackQuality', ['hd1080']);
+    });
+    window.addEventListener('message', function (e) {
+      if (e.source !== f.contentWindow) return;
+      try { var d = JSON.parse(e.data); } catch (_) { return; }
+      if (d.info && typeof d.info.muted === 'boolean') muted = d.info.muted;
+    });
+    new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) { if (!muted) { send('mute'); byUs = true; } }
+      else if (byUs) { send('unMute'); byUs = false; }
+    }).observe(f);
+  });
 
   // Galería con visor
   var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'),
