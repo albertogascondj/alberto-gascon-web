@@ -151,6 +151,11 @@ p { margin: 0 }
 .ph { color: var(--muted); font-style: italic }
 @media (max-width: 700px) { .sec-head { grid-template-columns: 1fr } }
 
+/* Apariciones sin scroll-driven animations (Safari de iPhone, Firefox): las activa assets/js/smooth.js */
+html.io .reveal { opacity: 0; transform: translate3d(0, 44px, 0); transition: opacity .9s var(--ease-out), transform 1s var(--ease-out) }
+html.io .grow { transform: scaleX(.9); transition: transform 1.1s var(--ease-out) }
+html.io .reveal.in, html.io .grow.in { opacity: 1; transform: none }
+
 /* Aparición al hacer scroll (solo navegadores con scroll-driven animations; sin soporte, todo se ve directamente) */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
