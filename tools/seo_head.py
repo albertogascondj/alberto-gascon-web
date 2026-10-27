@@ -5,9 +5,9 @@ SITE = "https://albertogascon.com"
 IG = "https://www.instagram.com/albertogascon_/"
 PAGES = {
   "index.html": dict(path="/", title="DJ en Teruel y Valencia para fiestas y eventos | Alberto Gascón",
-    desc="Alberto Gascón, DJ de Teruel con base en Valencia. Discotecas, festivales, fiestas patronales, eventos privados y corporativos y bodas en Teruel, Valencia y Aragón. Más de 200 bolos. Pide presupuesto."),
+    desc="Alberto Gascón, DJ de Teruel con base en Valencia. Discotecas, festivales, fiestas patronales, eventos y bodas en toda España. Pinchando desde los 13, más de 200 bolos. Pide presupuesto."),
   "tour.html": dict(path="/tour.html", title="Próximas fechas de Alberto Gascón DJ | On Tour",
-    desc="Próximas fechas de Alberto Gascón, DJ: discotecas, festivales y fiestas patronales en Teruel, Valencia y Aragón. Consulta dónde pincha las próximas noches."),
+    desc="Próximas fechas de Alberto Gascón, DJ: discotecas, festivales y fiestas patronales en Teruel, Valencia y toda España. Consulta dónde pincha las próximas noches."),
   "presskit.html": dict(path="/presskit.html", title="Press kit de Alberto Gascón DJ | Bio, logos y rider",
     desc="Press kit de Alberto Gascón, DJ de Teruel y Valencia: biografía corta y larga, logos en alta, rider técnico y contacto para promotores, salas y comisiones de fiestas."),
 }

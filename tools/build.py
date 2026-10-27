@@ -19,8 +19,8 @@ def fechas():
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#alberto",
-    "name": "Alberto Gascón", "jobTitle": "DJ",
-    "description": "DJ de Teruel con base en Valencia para discotecas, festivales, fiestas patronales, eventos privados y corporativos y bodas.",
+    "name": "Alberto Gascón", "jobTitle": "DJ", "birthDate": "2002", "birthPlace": {"@type": "Place", "name": "Teruel, España"},
+    "description": "DJ de Teruel con base en Valencia, pinchando desde los 13 años y profesional desde hace 8, para discotecas, festivales, fiestas patronales, eventos privados y corporativos y bodas.",
     "url": SITE + "/", "image": SITE + "/assets/img/og.jpg", "email": EMAIL,
     "sameAs": [IG],
     "homeLocation": {"@type": "Place", "name": "Valencia, España"},
@@ -30,13 +30,13 @@ PERSON = {
     ],
     "knowsAbout": ["DJ", "Sesiones de discoteca", "Fiestas patronales", "Bodas", "Técnico de sonido"],
 }
-AREAS = [{"@type": "AdministrativeArea", "name": n} for n in ["Provincia de Teruel", "Valencia", "Aragón", "Comunidad Valenciana"]]
+AREAS = [{"@type": "AdministrativeArea", "name": n} for n in ["España", "Provincia de Teruel", "Valencia", "Aragón", "Comunidad Valenciana"]]
 SERVICES = ["DJ para discotecas", "DJ para festivales", "DJ para fiestas patronales", "DJ para eventos privados y corporativos", "DJ para bodas", "Booking de DJs para fiestas"]
 BUSINESS = {
     "@type": ["ProfessionalService", "EntertainmentBusiness"], "@id": SITE + "/#negocio",
     "name": "Alberto Gascón DJ", "url": SITE + "/", "image": SITE + "/assets/img/og.jpg", "logo": SITE + "/assets/img/icons/icon-512.png",
     "email": EMAIL, "sameAs": [IG], "founder": {"@id": SITE + "/#alberto"},
-    "description": "Servicio de DJ en Teruel, Valencia y Aragón: discotecas, festivales, fiestas patronales, eventos privados y corporativos, bodas y booking de DJs.",
+    "description": "Servicio de DJ en Teruel, Valencia, Aragón y toda España: discotecas, festivales, fiestas patronales, eventos privados y corporativos, bodas y booking de DJs.",
     "address": {"@type": "PostalAddress", "addressLocality": "Valencia", "addressRegion": "Valencia", "addressCountry": "ES"},
     "areaServed": AREAS,
     "knowsLanguage": "es",
