@@ -13,9 +13,14 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 - `assets/logos/`: logos originales (rojo, negro, blanco, rosa).
 - `assets/fotos/`: fotos originales para la web (ver `LEEME.md`).
 
+## Cómo se trabaja
+
+- Copia local en `~/Documents/Cloude Apps/alberto-gascon-web`. Para verla: doble clic en `index.html`, o `python3 -m http.server 8000` en esta carpeta y abrir http://localhost:8000.
+- Lo que se sube a la rama `main` de `albertogascondj/alberto-gascon-web` se publica solo en https://albertogascon.com (GitHub Pages, DNS en Cloudflare).
+- Email de contacto: contacto@albertogascon.com (Cloudflare Email Routing).
+
 ## Pendiente
 
-- WhatsApp y email de contacto para esta faceta.
-- Fotos.
-- Dominio: albertogascon.com (comprado el 27-10-2026). Falta el repositorio de GitHub para publicarla con GitHub Pages.
+- Número de WhatsApp para el botón de contacto.
+- Fotos (en `assets/fotos/`).
 - Prototipo online: https://claude.ai/artifact/E5chYQWZPdUfxiUyqbF37T
