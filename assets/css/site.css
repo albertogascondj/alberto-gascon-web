@@ -20,9 +20,12 @@
 }
 * { box-sizing: border-box }
 html { -webkit-text-size-adjust: 100% }
+html.lenis, html.lenis body { height: auto }
+.lenis.lenis-stopped { overflow: clip }
+.lenis.lenis-smooth iframe { pointer-events: none }
 body { margin: 0; background: var(--ink); color: var(--paper); font: 400 17px/1.6 var(--f-body); overflow-x: hidden }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink) }
-body::after { content: ""; position: fixed; inset: 0; z-index: 70; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+body::after { content: ""; position: fixed; inset: 0; z-index: 70; pointer-events: none; opacity: .035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
 img { max-width: 100%; display: block }
 a { color: inherit }
@@ -65,8 +68,9 @@ nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
 /* Hero */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; padding-block: 120px 80px; isolation: isolate }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(600px circle at var(--mx, 70%) var(--my, 40%), color-mix(in srgb, var(--pink) 32%, transparent), transparent 60%),
-              radial-gradient(900px circle at 10% 110%, color-mix(in srgb, var(--pink-deep) 60%, transparent), transparent 60%) }
+  background: radial-gradient(900px circle at 10% 110%, color-mix(in srgb, var(--pink-deep) 60%, transparent), transparent 60%) }
+.hero .glow { position: absolute; left: 0; top: 0; z-index: -1; width: 1200px; height: 1200px; margin: -600px 0 0 -600px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--pink) 32%, transparent), transparent); transform: translate3d(70vw, 40vh, 0); will-change: transform }
 .hero .grid-lines { position: absolute; inset: 0; z-index: -1; opacity: .35;
   background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 80px 80px; mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%) }
@@ -75,7 +79,7 @@ nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
 .kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink-hot); box-shadow: 0 0 0 0 var(--pink-hot); animation: pulse 2s infinite }
 @keyframes pulse { 70% { box-shadow: 0 0 0 10px transparent } 100% { box-shadow: 0 0 0 0 transparent } }
 .logo-stage { perspective: 1000px; width: min(1050px, 100%) }
-.logo-stage img { width: 100%; height: auto; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .6s var(--ease-out); filter: drop-shadow(0 30px 60px rgba(216, 18, 126, .35));
+.logo-stage img { width: 100%; height: auto; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); will-change: transform; filter: drop-shadow(0 30px 60px rgba(216, 18, 126, .35));
   animation: logoIn 1.1s var(--ease-out) .6s both }
 @keyframes logoIn { from { opacity: 0; transform: translateY(60px) scale(.96); filter: blur(12px) } }
 .hero h1 { margin: 0; max-width: 22ch; font: 600 clamp(22px, 3.2vw, 38px)/1.2 var(--f-display); letter-spacing: -.01em; text-wrap: balance }
@@ -150,12 +154,12 @@ p { margin: 0 }
 /* Aparición al hacer scroll (solo navegadores con scroll-driven animations; sin soporte, todo se ve directamente) */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% cover 28% }
-    @keyframes reveal { from { opacity: .15; transform: translateY(70px); clip-path: inset(0 0 18% 0) } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0) } }
+    .reveal { animation: reveal cubic-bezier(.22, .61, .36, 1) both; animation-timeline: view(); animation-range: entry 0% cover 30% }
+    @keyframes reveal { from { opacity: 0; transform: translate3d(0, 56px, 0) } to { opacity: 1; transform: none } }
     .grow { animation: grow linear both; animation-timeline: view(); animation-range: entry 10% cover 45% }
-    @keyframes grow { from { transform: scaleX(.86); border-radius: 48px } to { transform: none; border-radius: 0 } }
+    @keyframes grow { from { transform: scaleX(.88) } to { transform: none } }
     .card { animation: shrink linear both; animation-timeline: view(); animation-range: exit-crossing 0% exit-crossing 100% }
-    @keyframes shrink { to { transform: scale(.9); filter: brightness(.5) } }
+    @keyframes shrink { to { transform: scale(.92); opacity: .5 } }
   }
 }
 

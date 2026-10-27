@@ -473,6 +473,7 @@
 </nav>
 
 <header class="hero" id="top">
+  <div class="glow" aria-hidden="true"></div>
   <div class="grid-lines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-copy">
@@ -702,17 +703,25 @@
   function onScroll() { nav.classList.toggle('solid', window.scrollY > 40); }
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Brillo y logo que siguen al ratón
-  var hero = document.querySelector('.hero'), stage = document.getElementById('logoStage');
+  // Brillo y logo que siguen al ratón, con inercia
+  var hero = document.querySelector('.hero'), stage = document.getElementById('logoStage'), glow = hero.querySelector('.glow');
   if (fine && !reduce) {
+    var tx = .7, ty = .4, cx = tx, cy = ty, tilt = 0, run = false;
+    function loop() {
+      cx += (tx - cx) * .08; cy += (ty - cy) * .08;
+      var r = hero.getBoundingClientRect();
+      glow.style.transform = 'translate3d(' + (cx * r.width).toFixed(1) + 'px,' + (cy * r.height).toFixed(1) + 'px,0)';
+      stage.style.setProperty('--ry', ((cx - .5) * 10 * tilt).toFixed(2) + 'deg');
+      stage.style.setProperty('--rx', ((.5 - cy) * 8 * tilt).toFixed(2) + 'deg');
+      if (Math.abs(tx - cx) > .0005 || Math.abs(ty - cy) > .0005) requestAnimationFrame(loop); else run = false;
+    }
+    function kick() { if (!run) { run = true; requestAnimationFrame(loop); } }
     hero.addEventListener('pointermove', function (e) {
-      var r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      hero.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
-      hero.style.setProperty('--my', (y * 100).toFixed(1) + '%');
-      stage.style.setProperty('--ry', ((x - .5) * 10).toFixed(2) + 'deg');
-      stage.style.setProperty('--rx', ((.5 - y) * 8).toFixed(2) + 'deg');
+      var r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width; ty = (e.clientY - r.top) / r.height; tilt = 1; kick();
     });
-    hero.addEventListener('pointerleave', function () { stage.style.setProperty('--rx', '0deg'); stage.style.setProperty('--ry', '0deg'); });
+    hero.addEventListener('pointerleave', function () { tx = .5; ty = .5; kick(); });
+    kick();
 
     // Botones magnéticos
     document.querySelectorAll('.btn').forEach(function (b) {
@@ -776,5 +785,7 @@
   });
 })();
 </script>
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/smooth.js"></script>
 </body>
 </html>
