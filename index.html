@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="preload" as="image" href="assets/img/logo-rosa.png" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/logo-rosa.svg" type="image/svg+xml" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/site.css">
 <!-- JSONLD -->
 <script type="application/ld+json">
@@ -481,7 +481,7 @@
   <div class="wrap">
     <div class="hero-copy">
     <p class="kicker"><span class="dot"></span><span>Discotecas · Festivales · Fiestas patronales · Eventos · Bodas</span><span>Desplazamiento a toda España</span></p>
-    <div class="logo-stage" id="logoStage"><img src="assets/img/logo-rosa.png" alt="Alberto Gascón, DJ en Teruel y Valencia" width="1600" height="547" fetchpriority="high"></div>
+    <div class="logo-stage" id="logoStage"><img src="assets/img/logo-rosa.svg" alt="Alberto Gascón, DJ en Teruel y Valencia" width="2841" height="970" fetchpriority="high"></div>
     <h1>
       <span class="line-mask"><span>DJ en Teruel y Valencia</span></span>
       <span class="line-mask"><span>para fiestas que <em>no se olvidan</em>.</span></span>
@@ -716,8 +716,8 @@
       cx += (tx - cx) * .08; cy += (ty - cy) * .08;
       var r = hero.getBoundingClientRect();
       glow.style.transform = 'translate3d(' + (cx * r.width).toFixed(1) + 'px,' + (cy * r.height).toFixed(1) + 'px,0)';
-      stage.style.setProperty('--ry', ((cx - .5) * 10 * tilt).toFixed(2) + 'deg');
-      stage.style.setProperty('--rx', ((.5 - cy) * 8 * tilt).toFixed(2) + 'deg');
+      stage.style.setProperty('--lx', ((cx - .5) * 14 * tilt).toFixed(1) + 'px');
+      stage.style.setProperty('--ly', ((cy - .5) * 10 * tilt).toFixed(1) + 'px');
       if (Math.abs(tx - cx) > .0005 || Math.abs(ty - cy) > .0005) requestAnimationFrame(loop); else run = false;
     }
     function kick() { if (!run) { run = true; requestAnimationFrame(loop); } }
