@@ -256,3 +256,10 @@ footer .row a:hover { color: var(--pink-hot) }
 .t-empty span { color: var(--muted) }
 .t-empty a { color: var(--pink-hot) }
 @media (max-width: 640px) { .t-row { grid-template-columns: 1fr; gap: 12px } .t-act { justify-self: start } }
+
+/* Redes */
+.social-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px; padding-block: 34px 6px }
+.social-row .label { font: 500 11px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted) }
+.ig { display: inline-flex; align-items: center; gap: 12px; color: var(--pink-hot); text-decoration: none; font: 500 13px/1 var(--f-mono) }
+.ig svg { width: 44px; height: 44px; padding: 10px; border: 1px solid var(--pink); border-radius: 50%; transition: background .35s, color .35s, transform .5s var(--ease-out) }
+.ig:hover svg { background: var(--pink); color: #fff; transform: rotate(-8deg) scale(1.08) }
