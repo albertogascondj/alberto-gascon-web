@@ -15,7 +15,7 @@
     var sala = f.privado ? (f.tipo || 'Evento privado') : f.sala;
     var accion = pasada ? '<span class="t-tag">Hecho</span>'
       : f.entradas ? '<a class="t-tag hot" href="' + esc(f.entradas) + '" target="_blank" rel="noopener">Entradas →</a>'
-      : f.privado ? '<span class="t-tag">Privado</span>' : '<span class="t-tag">Entrada libre o en taquilla</span>';
+      : f.privado ? '<span class="t-tag">Privado</span>' : '<span class="t-tag">Confirmado</span>';
     return '<li class="t-row' + (pasada ? ' past' : '') + '">' +
       '<div class="t-date"><b>' + f.d.getDate() + '</b><span>' + MESES[f.d.getMonth()] + ' ' + f.d.getFullYear() + '</span><small>' + DIAS[f.d.getDay()] + (f.hora ? ' · ' + esc(f.hora) : '') + '</small></div>' +
       '<div class="t-main"><span class="t-venue">' + esc(sala) + '</span><span class="t-city">' + esc(f.ciudad) + (f.tipo && !f.privado ? ' · ' + esc(f.tipo) : '') + '</span></div>' +
