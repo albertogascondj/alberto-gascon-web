@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 
+
+
 <!-- SEO -->
 <title>Press kit de Alberto Gascón DJ | Bio, logos y rider</title>
 <meta name="description" content="Press kit de Alberto Gascón, DJ de Teruel y Valencia: biografía corta y larga, logos en alta, rider técnico y contacto para promotores, salas y comisiones de fiestas.">
@@ -70,11 +72,23 @@
 .logo-card .meta a { color: var(--pink-hot); text-decoration: none; white-space: nowrap }
 @media (max-width: 900px) { .logos { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
 @media (max-width: 460px) { .logos { grid-template-columns: 1fr } }
-.photos { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px }
-.photos div { aspect-ratio: 3/4; border-radius: 22px; border: 1px dashed var(--line); display: grid; place-items: center; text-align: center; padding: 18px; color: var(--muted); font: 400 12px/1.5 var(--f-mono);
-  background: radial-gradient(100% 80% at 30% 10%, color-mix(in srgb, var(--pink-deep) 50%, transparent), var(--ink-2) 70%) }
-.photos div:first-child { aspect-ratio: auto; grid-row: span 1 }
-@media (max-width: 700px) { .photos { grid-template-columns: 1fr 1fr } .photos div:first-child { grid-column: 1 / -1; aspect-ratio: 16/10 } }
+.photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: dense; gap: 14px }
+.ph { border-radius: 20px; border: 1px solid var(--line); overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; margin: 0; transition: border-color .4s, transform .6s var(--ease-out) }
+.ph:hover { border-color: var(--pink); transform: translateY(-6px) }
+.ph .prev { aspect-ratio: 4/5; overflow: hidden; background: var(--ink-2) }
+.ph .prev.light { background: #fff }
+.ph .prev img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out) }
+.ph .prev.light img { object-fit: contain }
+.ph:hover .prev img { transform: scale(1.05) }
+.ph figcaption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); font: 500 11px/1.35 var(--f-mono); color: var(--muted) }
+.ph figcaption a { color: var(--pink-hot); text-decoration: none; white-space: nowrap }
+.ph.feat { grid-column: span 2; grid-row: span 2 }
+.ph.feat .prev { aspect-ratio: auto; height: 100% }
+.ph.wide { grid-column: span 2 }
+.ph.wide .prev { aspect-ratio: 8/5 }
+.photos-foot { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; margin-top: 26px; color: var(--muted); font: 400 13px/1.5 var(--f-mono) }
+@media (max-width: 860px) { .photos { grid-template-columns: 1fr 1fr } .ph.feat { grid-row: auto } .ph.feat .prev { aspect-ratio: 4/5 } .ph.wide { grid-column: auto } .ph.wide .prev { aspect-ratio: 4/5 } }
+@media (max-width: 480px) { .ph figcaption { flex-direction: column; align-items: flex-start } }
 .mini-venues { display: flex; flex-wrap: wrap; gap: 10px }
 .mini-venues span { padding: 12px 18px; border-radius: 999px; border: 1px solid var(--line); font: 600 14px/1.2 var(--f-display); text-transform: uppercase }
 .mini-venues span small { font: 400 11px/1 var(--f-mono); color: var(--muted); text-transform: none; margin-left: 8px }
@@ -231,9 +245,21 @@
   <div class="wrap">
     <div class="sec-head reveal"><div><p class="eyebrow">Fotos</p><h2>Fotos de <span class="out">prensa</span></h2></div></div>
     <div class="photos reveal">
-      <div>Foto principal en cabina<br>(pendiente)</div>
-      <div>Retrato vertical<br>(pendiente)</div>
-      <div>Pista con público<br>(pendiente)</div>
+      <figure class="ph feat"><div class="prev light"><img src="assets/img/fotos/alberto-gascon-dj-retrato-fondo-blanco-cartel-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-retrato-fondo-blanco-cartel-700.webp 560w, assets/img/fotos/alberto-gascon-dj-retrato-fondo-blanco-cartel-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 48vw" loading="lazy" alt="Retrato de Alberto Gascón sobre fondo blanco, pensado para carteles"></div><figcaption><span>Retrato para cartelería (fondo blanco)</span><a href="assets/presskit/fotos/alberto-gascon-dj-retrato-fondo-blanco-cartel.png" download>PNG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-01-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-01-700.webp 560w, assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-01-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en el escenario de unas fiestas, con el público delante"></div><figcaption><span>Escenario con público</span><a href="assets/presskit/fotos/alberto-gascon-dj-fiestas-teruel-escenario-01.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-cabina-fiestas-teruel-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-cabina-fiestas-teruel-700.webp 560w, assets/img/fotos/alberto-gascon-dj-cabina-fiestas-teruel-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en la cabina de unas fiestas en Teruel"></div><figcaption><span>En cabina · Teruel</span><a href="assets/presskit/fotos/alberto-gascon-dj-cabina-fiestas-teruel.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-retrato-microfono-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-retrato-microfono-700.webp 560w, assets/img/fotos/alberto-gascon-dj-retrato-microfono-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón con el micrófono en la mano durante una sesión"></div><figcaption><span>Con micrófono</span><a href="assets/presskit/fotos/alberto-gascon-dj-retrato-microfono.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-plaza-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-plaza-700.webp 560w, assets/img/fotos/alberto-gascon-dj-fiestas-teruel-plaza-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón pinchando en la plaza durante unas fiestas"></div><figcaption><span>Plaza llena</span><a href="assets/presskit/fotos/alberto-gascon-dj-fiestas-teruel-plaza.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-escenario-pantalla-roja-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-escenario-pantalla-roja-700.webp 560w, assets/img/fotos/alberto-gascon-dj-escenario-pantalla-roja-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en un escenario con pantalla de luces rojas"></div><figcaption><span>Escenario · pantalla roja</span><a href="assets/presskit/fotos/alberto-gascon-dj-escenario-pantalla-roja.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-escenario-festival-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-escenario-festival-700.webp 560w, assets/img/fotos/alberto-gascon-dj-escenario-festival-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón pinchando en un escenario de festival"></div><figcaption><span>Escenario de festival</span><a href="assets/presskit/fotos/alberto-gascon-dj-escenario-festival.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-escenario-blanco-y-negro-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-escenario-blanco-y-negro-700.webp 560w, assets/img/fotos/alberto-gascon-dj-escenario-blanco-y-negro-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en el escenario, foto en blanco y negro"></div><figcaption><span>Blanco y negro</span><a href="assets/presskit/fotos/alberto-gascon-dj-escenario-blanco-y-negro.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-cabina-denon-prime-4-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-cabina-denon-prime-4-700.webp 560w, assets/img/fotos/alberto-gascon-dj-cabina-denon-prime-4-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en cabina con la Denon DJ Prime 4"></div><figcaption><span>Denon DJ Prime 4</span><a href="assets/presskit/fotos/alberto-gascon-dj-cabina-denon-prime-4.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-02-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-02-700.webp 560w, assets/img/fotos/alberto-gascon-dj-fiestas-teruel-escenario-02-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Alberto Gascón en el escenario de unas fiestas, con banderines y público"></div><figcaption><span>Escenario con banderines</span><a href="assets/presskit/fotos/alberto-gascon-dj-fiestas-teruel-escenario-02.jpg" download>JPG ↓</a></figcaption></figure>
+      <figure class="ph wide"><div class="prev"><img src="assets/img/fotos/alberto-gascon-dj-carpa-vista-cabina-700.webp" srcset="assets/img/fotos/alberto-gascon-dj-carpa-vista-cabina-700.webp 560w, assets/img/fotos/alberto-gascon-dj-carpa-vista-cabina-1400.webp 1120w" sizes="(max-width: 860px) 46vw, 32vw" loading="lazy" alt="Vista de la carpa llena de gente desde la cabina de Alberto Gascón"></div><figcaption><span>Vista desde cabina</span><a href="assets/presskit/fotos/alberto-gascon-dj-carpa-vista-cabina.jpg" download>JPG ↓</a></figcaption></figure>
+    </div>
+    <div class="photos-foot reveal">
+      <span>Fotos en alta resolución para carteles, prensa y redes.</span>
+      <a class="btn" href="assets/presskit/alberto-gascon-fotos-prensa.zip" download>Descargar todas (ZIP · 6 MB) <span class="arr">→</span></a>
     </div>
   </div>
 </section>
