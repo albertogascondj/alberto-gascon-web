@@ -183,7 +183,8 @@ p { margin: 0 }
 @media (max-width: 480px) { .steps { grid-template-columns: 1fr } }
 
 /* Rider */
-.rider { display: grid; grid-template-columns: 1fr 1fr; gap: 22px }
+.rider { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px }
+.opt.hosp { background: color-mix(in srgb, var(--pink) 14%, var(--ink-2)); border-color: color-mix(in srgb, var(--pink) 45%, var(--line)) }
 .opt { padding: clamp(26px, 4vw, 44px); border-radius: 28px; border: 1px solid var(--line); background: var(--ink-2); display: grid; gap: 16px; align-content: start; min-width: 0; transition: border-color .4s, transform .6s var(--ease-out) }
 .opt:hover { border-color: var(--pink); transform: translateY(-6px) }
 .opt .tag { font: 500 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pink-hot) }
@@ -191,6 +192,7 @@ p { margin: 0 }
 .opt li { display: flex; gap: 12px }
 .opt li::before { content: "→"; color: var(--pink-hot) }
 .opt li b { color: var(--paper); font-weight: 600 }
+@media (max-width: 960px) { .rider { grid-template-columns: 1fr 1fr } .opt.hosp { grid-column: 1 / -1 } }
 @media (max-width: 760px) { .rider { grid-template-columns: 1fr } }
 
 /* Booking */
