@@ -52,7 +52,24 @@ nav ul a { position: relative; text-decoration: none; font: 500 13px/1 var(--f-m
 nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--pink-hot); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease) }
 nav ul a:hover { color: var(--paper) }
 nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
-@media (max-width: 860px) { nav ul { display: none } }
+.burger { display: none; flex: none; position: relative; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--paper); cursor: pointer }
+.burger span { position: absolute; left: 13px; right: 13px; height: 1.5px; background: currentColor; transition: transform .45s var(--ease) }
+.burger span:first-child { top: 17px } .burger span:last-child { top: 25px }
+nav.open .burger span:first-child { transform: translateY(4px) rotate(45deg) }
+nav.open .burger span:last-child { transform: translateY(-4px) rotate(-45deg) }
+@media (max-width: 860px) {
+  .burger { display: block }
+  nav .wrap { gap: 10px }
+  nav .wrap > .btn { margin-left: auto }
+  nav.open { background: var(--ink); backdrop-filter: none; -webkit-backdrop-filter: none; border-color: var(--line) }
+  nav ul { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; gap: 6px; padding: 110px var(--gut-r) 48px var(--gut-l); background: var(--ink); clip-path: inset(0 0 100% 0); visibility: hidden; transition: clip-path .6s var(--ease), visibility 0s .6s }
+  nav.open ul { clip-path: inset(0); visibility: visible; transition: clip-path .6s var(--ease) }
+  nav ul li { overflow: hidden }
+  nav ul a { display: block; padding-block: 6px; font: 700 clamp(30px, 9vw, 46px)/1.1 var(--f-display); letter-spacing: -.02em; color: var(--paper); transform: translateY(105%); transition: transform .6s var(--ease-out), color .3s }
+  nav.open ul a { transform: none; transition-delay: calc(.12s + var(--d, 0) * .06s) }
+  nav ul a::after { display: none }
+  nav ul a:hover, nav ul a:active { color: var(--pink-hot) }
+}
 
 /* Botones */
 .btn { --bg: var(--pink); position: relative; overflow: hidden; isolation: isolate; display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; border: 1px solid var(--bg); background: var(--bg); color: #fff; text-decoration: none; cursor: pointer;
@@ -140,7 +157,7 @@ button.g-item:focus-visible { outline: 2px solid var(--pink-hot); outline-offset
 @keyframes marquee { to { transform: translateX(-50%) } }
 
 /* Secciones */
-section { position: relative; padding-block: clamp(80px, 12vw, 160px) }
+section { position: relative; padding-block: clamp(64px, 12vw, 160px) }
 .sec-head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: clamp(40px, 6vw, 72px) }
 .eyebrow { display: inline-flex; gap: 10px; align-items: center; font: 500 12px/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--pink-hot); margin: 0 0 18px }
 .eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor }
@@ -273,7 +290,7 @@ form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 22px; min-width:
 footer { border-top: 1px solid var(--line); overflow: hidden }
 footer .big { font: 800 clamp(34px, 8.6vw, 140px)/.85 var(--f-display); letter-spacing: -.05em; text-transform: uppercase; white-space: nowrap; color: transparent; -webkit-text-stroke: 1px var(--line); padding-block: clamp(28px, 5vw, 60px) 0; text-align: center; user-select: none }
 footer .row { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; padding-block: 28px; font: 400 12px/1.5 var(--f-mono); color: var(--muted) }
-footer .row a { text-decoration: none }
+footer .row a { text-decoration: none; display: inline-block; padding-block: 12px; margin-block: -12px }
 footer .row a:hover { color: var(--pink-hot) }
 
 @media (prefers-reduced-motion: reduce) {
@@ -326,3 +343,6 @@ footer .row a:hover { color: var(--pink-hot) }
 .t-pin svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; border: 1px solid var(--pink); color: var(--pink-hot); transition: background .35s, color .35s, transform .5s var(--ease-out) }
 .t-pin:hover svg { background: var(--pink); color: #fff; transform: translateY(-4px) }
 .t-pin:hover svg circle { fill: var(--pink) }
+
+/* Móvil: el nombre grande del pie cabe entero */
+@media (max-width: 600px) { footer .big { font-size: 7.4vw; letter-spacing: -.04em } }

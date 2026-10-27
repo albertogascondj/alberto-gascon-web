@@ -13,6 +13,21 @@
     });
   }
 
+  // Menú del móvil
+  var nav = document.getElementById('nav'), burger = nav && nav.querySelector('.burger');
+  if (burger) {
+    var setMenu = function (open) {
+      nav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+      if (window.lenis) open ? lenis.stop() : lenis.start();
+    };
+    burger.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+    nav.querySelectorAll('ul a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  }
+
   // Apariciones en navegadores sin animaciones ligadas al scroll (Safari de iPhone, Firefox)
   var css = window.CSS && CSS.supports && CSS.supports('animation-timeline: view()');
   if (!css && !reduce && 'IntersectionObserver' in window) {

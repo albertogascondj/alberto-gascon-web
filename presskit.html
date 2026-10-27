@@ -58,7 +58,7 @@
 .bio .tag { font: 500 11px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--pink-hot) }
 .bio .words { font: 400 11px/1 var(--f-mono); color: var(--muted) }
 .bio-text { display: grid; gap: 14px; color: var(--paper) }
-.copy { font: 600 11px/1 var(--f-display); letter-spacing: .06em; text-transform: uppercase; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--paper); cursor: pointer; transition: background .3s, border-color .3s }
+.copy { font: 600 11px/1 var(--f-display); letter-spacing: .06em; text-transform: uppercase; padding: 14px 18px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--paper); cursor: pointer; transition: background .3s, border-color .3s }
 .copy:hover { border-color: var(--pink); background: var(--pink) }
 @media (max-width: 860px) { .bios { grid-template-columns: 1fr } }
 .logos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px }
@@ -70,7 +70,7 @@
 .logo-card .prev.light { background: var(--paper) }
 .logo-card .prev.pink { background: var(--pink-deep) }
 .logo-card .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 16px; border-top: 1px solid var(--line); font: 500 12px/1.3 var(--f-mono) }
-.logo-card .meta a { color: var(--pink-hot); text-decoration: none; white-space: nowrap }
+.logo-card .meta a { color: var(--pink-hot); text-decoration: none; white-space: nowrap; padding: 12px 4px; margin: -12px -4px }
 @media (max-width: 900px) { .logos { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
 @media (max-width: 460px) { .logos { grid-template-columns: 1fr } }
 .photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: dense; gap: 14px }
@@ -82,7 +82,7 @@
 .ph .prev.light img { object-fit: contain }
 .ph:hover .prev img { transform: scale(1.05) }
 .ph figcaption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); font: 500 11px/1.35 var(--f-mono); color: var(--muted) }
-.ph figcaption a { color: var(--pink-hot); text-decoration: none; white-space: nowrap }
+.ph figcaption a { color: var(--pink-hot); text-decoration: none; white-space: nowrap; padding: 12px 4px; margin: -12px -4px }
 .ph.feat { grid-column: span 2; grid-row: span 2 }
 .ph.feat .prev { aspect-ratio: auto; height: 100% }
 .ph.wide { grid-column: span 2 }
@@ -160,14 +160,15 @@
 <nav id="nav" class="solid">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Inicio"><img src="assets/img/logo-blanco.png" alt="Alberto Gascón"></a>
-    <ul>
-      <li><a href="tour.html">On Tour</a></li>
-      <li><a href="#ficha">Ficha</a></li>
-      <li><a href="#bio">Bio</a></li>
-      <li><a href="#logos">Logos</a></li>
-      <li><a href="#rider">Rider</a></li>
+    <ul id="menu">
+      <li style="--d:0"><a href="tour.html">On Tour</a></li>
+      <li style="--d:1"><a href="#ficha">Ficha</a></li>
+      <li style="--d:2"><a href="#bio">Bio</a></li>
+      <li style="--d:3"><a href="#logos">Logos</a></li>
+      <li style="--d:4"><a href="#rider">Rider</a></li>
     </ul>
     <a class="btn small" href="index.html#presupuesto">Contratar <span class="arr">→</span></a>
+    <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </div>
 </nav>
 

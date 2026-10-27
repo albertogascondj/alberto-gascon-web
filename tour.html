@@ -330,12 +330,13 @@
 <nav id="nav" class="solid">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Inicio"><img src="assets/img/logo-blanco.png" alt="Alberto Gascón"></a>
-    <ul>
-      <li><a href="index.html#servicios">Servicios</a></li>
-      <li><a href="tour.html">On Tour</a></li>
-      <li><a href="presskit.html">Press kit</a></li>
+    <ul id="menu">
+      <li style="--d:0"><a href="index.html#servicios">Servicios</a></li>
+      <li style="--d:1"><a href="tour.html">On Tour</a></li>
+      <li style="--d:2"><a href="presskit.html">Press kit</a></li>
     </ul>
     <a class="btn small" href="index.html#presupuesto">Contratar <span class="arr">→</span></a>
+    <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
   </div>
 </nav>
 
