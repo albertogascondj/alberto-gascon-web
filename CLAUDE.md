@@ -28,5 +28,5 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 
 - Número de WhatsApp para el botón de contacto.
 - Instagram: @albertogascon_ (ya enlazado).
-- Fotos (en `assets/fotos/`).
+- Sesión de fotos de estudio (las de bolos ya están en la web: portada, galería "En cabina", Sobre mí y press kit).
 - Prototipo online: https://claude.ai/artifact/E5chYQWZPdUfxiUyqbF37T
