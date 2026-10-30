@@ -64,7 +64,7 @@
    "description": "DJ de Teruel con base en Valencia, pinchando desde los 13 años y profesional desde hace 8, para discotecas, festivales, fiestas patronales, eventos privados y corporativos y bodas.",
    "url": "https://albertogascon.com/",
    "image": "https://albertogascon.com/assets/img/og.jpg",
-   "email": "contacto@albertogascon.com",
+   "email": "contacto@salvajebooking.com",
    "sameAs": [
     "https://www.instagram.com/albertogascon_/",
     "https://www.youtube.com/@albertogascondj"
@@ -101,7 +101,7 @@
    "url": "https://albertogascon.com/",
    "image": "https://albertogascon.com/assets/img/og.jpg",
    "logo": "https://albertogascon.com/assets/img/icons/icon-512.png",
-   "email": "contacto@albertogascon.com",
+   "email": "contacto@salvajebooking.com",
    "sameAs": [
     "https://www.instagram.com/albertogascon_/",
     "https://www.youtube.com/@albertogascondj"
@@ -668,9 +668,9 @@
       <div>
         <p class="eyebrow">Booking</p>
         <h2>¿Buscas DJ para <span class="out">tus fiestas</span>?</h2>
-        <p>Para comisiones de fiestas, ayuntamientos y salas: os organizo el cartel con DJs de la zona que conozco y en los que confío. Un solo contacto para todas las noches.</p>
+        <p>Para comisiones de fiestas, ayuntamientos y salas: el cartel lo monta <b>Salvaje Booking</b>, mi agencia, con DJs en los que confío. Un solo contacto para todas las noches.</p>
       </div>
-      <div><a class="btn" href="#presupuesto">Cuéntame qué necesitas <span class="arr">→</span></a></div>
+      <div><a class="btn" href="https://www.salvajebooking.com" target="_blank" rel="noopener">Ir a Salvaje Booking <span class="arr">→</span></a></div>
     </div>
   </div>
 </section>
@@ -680,11 +680,11 @@
     <div class="contact-info reveal">
       <p class="eyebrow">Presupuesto</p>
       <h2>¿Tienes <span class="out">un evento</span>?</h2>
-      <p>Escríbeme por WhatsApp o rellena el formulario con la fecha y el lugar. Te contesto con disponibilidad y precio.</p>
+      <p>Mis contrataciones las lleva <b>Salvaje Booking</b>, mi agencia. Rellena el formulario con la fecha y el lugar, o escríbeles directamente, y te contestan con disponibilidad y presupuesto.</p>
       <div>
-        <div class="channel"><span>Email</span><b>contacto@albertogascon.com</b></div>
+        <div class="channel"><span>Agencia</span><b><a href="https://www.salvajebooking.com/artistas/alberto-gascon" target="_blank" rel="noopener">Salvaje Booking</a></b></div>
+        <div class="channel"><span>Email</span><b><a href="mailto:contacto@salvajebooking.com">contacto@salvajebooking.com</a></b></div>
         <div class="channel"><span>Instagram</span><b><a href="https://www.instagram.com/albertogascon_/" target="_blank" rel="noopener">@albertogascon_</a></b></div>
-        <div class="channel"><span>WhatsApp</span><b class="ph">Número por confirmar</b></div>
       </div>
     </div>
     <form id="bookform" class="reveal" novalidate>
@@ -698,7 +698,7 @@
       <div class="field"><label for="f-guests">Invitados (aprox.)</label><input id="f-guests" name="guests" inputmode="numeric" placeholder="150"></div>
       <div class="field full"><label for="f-msg">Mensaje</label><textarea id="f-msg" name="msg" placeholder="Horario, si hay equipo de sonido en el sitio, música que os gusta…"></textarea></div>
       <div><button class="btn" type="submit">Pedir presupuesto <span class="arr">→</span></button></div>
-      <p class="sent" id="sent" hidden>De momento el formulario no envía nada. Escríbeme a contacto@albertogascon.com mientras lo conectamos.</p>
+      <p class="sent" id="sent" hidden>Se ha abierto tu correo con la petición ya escrita para Salvaje Booking. Solo tienes que enviarla. Si no se abre, escribe a contacto@salvajebooking.com.</p>
     </form>
   </div>
 </section>
@@ -811,8 +811,13 @@
     if (e.key === 'ArrowRight') show(cur + 1);
   });
 
+  // El formulario abre el correo del visitante con la petición escrita para Salvaje Booking
   document.getElementById('bookform').addEventListener('submit', function (e) {
     e.preventDefault();
+    var f = e.target, campos = [['Nombre', 'name'], ['Teléfono', 'tel'], ['Tipo de evento', 'type'], ['Fecha', 'date'], ['Localidad', 'venue'], ['Invitados', 'guests'], ['Mensaje', 'msg']];
+    var cuerpo = 'Artista: Alberto Gascón\n' + campos.map(function (c) { return c[0] + ': ' + (f.elements[c[1]].value || '-'); }).join('\n');
+    var asunto = 'Petición de presupuesto · Alberto Gascón · ' + (f.elements.type.value || 'evento') + ' · ' + (f.elements.date.value || '');
+    location.href = 'mailto:contacto@salvajebooking.com?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
     document.getElementById('sent').hidden = false;
   });
 })();

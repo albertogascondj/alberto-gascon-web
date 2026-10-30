@@ -7,7 +7,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://albertogascon.com"
 IG = "https://www.instagram.com/albertogascon_/"
 YT = "https://www.youtube.com/@albertogascondj"
-EMAIL = "contacto@albertogascon.com"
+EMAIL = "contacto@salvajebooking.com"
 TODAY = datetime.date.today()
 
 def fechas():

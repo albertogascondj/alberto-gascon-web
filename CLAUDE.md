@@ -22,7 +22,7 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 
 - Copia local en `~/Documents/Cloude Apps/alberto-gascon-web`. Para verla: doble clic en `index.html`, o `python3 -m http.server 8000` en esta carpeta y abrir http://localhost:8000.
 - Lo que se sube a la rama `main` de `albertogascondj/alberto-gascon-web` se publica solo en https://albertogascon.com (GitHub Pages, DNS en Cloudflare).
-- Email de contacto: contacto@albertogascon.com (Cloudflare Email Routing).
+- Contacto de contratación: Salvaje Booking (contacto@salvajebooking.com, https://www.salvajebooking.com). contacto@albertogascon.com sigue existiendo (Cloudflare Email Routing), pero la web ya no lo muestra.
 
 ## Pendiente
 
