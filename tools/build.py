@@ -1,6 +1,7 @@
 """Regenera los datos estructurados (JSON-LD) y el sitemap.
 
 Ejecutar después de cambiar data/fechas.js o los textos:  python3 tools/build.py
+También regenera la versión en inglés (en/) con tools/i18n.py.
 """
 import re, json, html, datetime, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -89,8 +90,13 @@ inject("tour.html", [WEBSITE, PERSON, {"@type": "ItemList", "name": "Próximas f
     {"@type": "ListItem", "position": i + 1, "item": e} for i, e in enumerate(events())]}])
 inject("presskit.html", [WEBSITE, PERSON])
 
-urls = [("/", "weekly", "1.0"), ("/tour.html", "weekly", "0.8"), ("/presskit.html", "monthly", "0.6")]
+urls = [("/", "weekly", "1.0"), ("/tour.html", "weekly", "0.8"), ("/presskit.html", "monthly", "0.6"),
+        ("/en/", "weekly", "0.9"), ("/en/tour.html", "weekly", "0.7"), ("/en/presskit.html", "monthly", "0.5")]
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
     f"  <url><loc>{SITE}{u}</loc><lastmod>{TODAY.isoformat()}</lastmod><changefreq>{c}</changefreq><priority>{p}</priority></url>\n" for u, c, p in urls) + "</urlset>\n"
 (ROOT / "sitemap.xml").write_text(sm)
 print("JSON-LD y sitemap actualizados:", len(events()), "fechas próximas")
+
+# Versión en inglés (en/), con los textos de tools/en.py
+import runpy
+runpy.run_path(str(ROOT / "tools/i18n.py"))

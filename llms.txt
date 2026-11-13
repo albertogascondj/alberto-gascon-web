@@ -19,3 +19,4 @@
 - [Inicio](https://albertogascon.com/): servicios, trayectoria, preguntas frecuentes y formulario de presupuesto.
 - [On Tour](https://albertogascon.com/tour.html): próximas fechas.
 - [Press kit](https://albertogascon.com/presskit.html): biografía, logos y rider técnico.
+- [English version](https://albertogascon.com/en/): la misma web en inglés (también /en/tour.html y /en/presskit.html).

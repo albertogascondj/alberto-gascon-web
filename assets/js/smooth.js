@@ -19,7 +19,8 @@
     var setMenu = function (open) {
       nav.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', open);
-      burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      var en = document.documentElement.lang === 'en';
+      burger.setAttribute('aria-label', open ? (en ? 'Close menu' : 'Cerrar menú') : (en ? 'Open menu' : 'Abrir menú'));
       document.documentElement.style.overflow = open ? 'hidden' : '';
       if (window.lenis) open ? lenis.stop() : lenis.start();
     };

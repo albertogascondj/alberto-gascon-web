@@ -51,6 +51,14 @@ nav ul a { position: relative; text-decoration: none; font: 500 13px/1 var(--f-m
 nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--pink-hot); transform: scaleX(0); transform-origin: right; transition: transform .45s var(--ease) }
 nav ul a:hover { color: var(--paper) }
 nav ul a:hover::after { transform: scaleX(1); transform-origin: left }
+/* Selector de idioma */
+nav ul { margin-left: auto }
+.lang { margin-left: auto; display: flex; align-items: center; font: 500 12px/1 var(--f-mono); letter-spacing: .08em; color: var(--muted) }
+.lang > * { padding: 14px 6px }
+.lang > * + *::before { content: "/"; margin: 0 8px 0 -2px; color: var(--line) }
+.lang span[aria-current] { color: var(--paper) }
+.lang a { color: var(--muted); text-decoration: none; transition: color .3s }
+.lang a:hover { color: var(--pink-hot) }
 .burger { display: none; flex: none; position: relative; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--paper); cursor: pointer }
 .burger span { position: absolute; left: 13px; right: 13px; height: 1.5px; background: currentColor; transition: transform .45s var(--ease) }
 .burger span:first-child { top: 17px } .burger span:last-child { top: 25px }
@@ -59,7 +67,8 @@ nav.open .burger span:last-child { transform: translateY(-4px) rotate(-45deg) }
 @media (max-width: 860px) {
   .burger { display: block }
   nav .wrap { gap: 10px }
-  nav .wrap > .btn { margin-left: auto }
+  nav .wrap > .btn { margin-left: 0 }
+  .lang > * { padding-inline: 4px }
   nav.open { background: var(--ink); backdrop-filter: none; -webkit-backdrop-filter: none; border-color: var(--line) }
   nav ul { position: fixed; inset: 0; z-index: -1; flex-direction: column; justify-content: center; gap: 6px; padding: 110px var(--gut-r) 48px var(--gut-l); background: var(--ink); clip-path: inset(0 0 100% 0); visibility: hidden; transition: clip-path .6s var(--ease), visibility 0s .6s }
   nav.open ul { clip-path: inset(0); visibility: visible; transition: clip-path .6s var(--ease) }
@@ -79,7 +88,7 @@ nav.open .burger span:last-child { transform: translateY(-4px) rotate(-45deg) }
 .btn .arr { display: inline-block; transition: transform .5s var(--ease) }
 .btn:hover .arr { transform: translateX(4px) rotate(-45deg) }
 .btn.ghost { --bg: transparent; border-color: color-mix(in srgb, var(--paper) 35%, transparent); color: var(--paper) }
-.btn.small { padding: 12px 18px; font-size: 11px }
+.btn.small { padding: 12px 18px; font-size: 11px; white-space: nowrap }
 
 /* Hero */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; padding-block: 120px 80px; isolation: isolate }

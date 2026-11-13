@@ -19,6 +19,9 @@ for name, p in PAGES.items():
 <title>{p["title"]}</title>
 <meta name="description" content="{p["desc"]}">
 <link rel="canonical" href="{url}">
+<link rel="alternate" hreflang="es" href="{url}">
+<link rel="alternate" hreflang="en" href="{SITE}/en{p["path"]}">
+<link rel="alternate" hreflang="x-default" href="{url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Alberto Gascón">
 <meta property="og:type" content="website">

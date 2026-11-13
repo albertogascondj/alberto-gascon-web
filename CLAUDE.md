@@ -11,6 +11,7 @@ Web de **Alberto Gascón**, la faceta comercial: DJ para bodas, fiestas patronal
 - `index.html`: portada. `tour.html`: On Tour. `presskit.html`: press kit.
 - `assets/css/site.css`: estilos comunes. `assets/js/tour.js`: pinta las fechas.
 - `data/fechas.js`: **lista de fechas** (una línea por fecha; la web separa próximas y pasadas sola). Tras cambiarla: `python3 tools/build.py`.
+- `en/`: versión en inglés. **No se edita a mano**: la genera `tools/i18n.py` (lo lanza `build.py`) con los textos de `tools/en.py`. Si cambias un texto en español, cambia su pareja en `tools/en.py` y ejecuta `python3 tools/build.py`; avisa de lo que quede sin traducir.
 - `tools/build.py`: regenera JSON-LD (persona, servicio, FAQ, eventos) y `sitemap.xml`. `tools/seo_head.py`: títulos, descripciones y etiquetas OG de cada página.
 - `SEO.md`: lo hecho y lo pendiente de SEO.
 - `assets/presskit/alberto-gascon-logos.zip`: logos para descargar.
